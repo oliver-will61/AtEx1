@@ -1,0 +1,58 @@
+@import url(/styles/reset.css);
+@import url(/styles/cadastro.css);
+
+:root{
+    --cor1:#CC3733;
+    --cor2: #E76C6A;
+    --cor3: #FD9B98;
+    --cor4: #FFC7C5;
+    --cor5: white;
+}
+
+body{
+    background-color:var(--cor5);
+    font-size: 1em;
+}
+
+.container-login {
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    height: 100vh;
+}
+
+label{
+    display: block;
+    margin-bottom: 1em;
+}
+
+.entrada-login{
+    border: 1px solid black;
+    border-radius: 9px;
+    padding: 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.botao{
+    background-color: var(--cor1);
+    border: none;
+    border-radius: 9px;
+    color: var(--cor5);
+    width:98px;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.texto-login{
+    margin-bottom: 0.5em;
+}
+
+.texto-login-link{
+    color: var(--cor1);
+    font-weight: 600;
+    cursor:pointer;
+    text-decoration: none;
+}
