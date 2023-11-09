@@ -10,10 +10,18 @@
     <main class="container-cadastro">
         <form class="formualario-cadastro">
 
-            <select>
-                <option>Cliente</option>
-                <option>Estabelecimento</option>
-            </select>
+            <div class="container-radio">
+
+                <div class="container-rotulo">
+                    <input type="radio" id ="radio-cliente" value="Cliente" name="opcao" class="radio">Cliente
+                    <label for="radio-cliente" class="radio-rotulo"></label>
+                </div>
+                
+                <div class="container-rotulo">
+                    <input type="radio" id ="radio-estabelecimento" value="Estabelecimento" name="opcao" class="radio">Estabelecimento
+                    <label for="radio-estabelecimento" class="radio-rotulo"></label>
+                </div>
+            </div>
 
             <label for="email-cadastro">Email
                 <input id="email-cadastro" class="formulario-cadastro-entrada" >
@@ -31,5 +39,7 @@
    
         </form>
     </main>
+
+    <script src="/scripts/cadastro.js"></script>
 </body>
 </html>

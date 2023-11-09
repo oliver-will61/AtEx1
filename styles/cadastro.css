@@ -7,6 +7,27 @@
     display: block;
 }
 
+.container-radio{
+    margin: 0.5em 0 0.7em 0;
+}
+
+.container-rotulo{
+    margin-bottom: 0.3em;
+}
+
+.container-rotulo{
+    display: flex;
+    gap:0.2em
+}
+
+.radio-rotulo{
+    margin-bottom: 0.5em;
+}
+
+.radio{
+    margin:0;
+}
+
 .formulario-cadastro-entrada{
     display: block;
     border: 1px solid black;
