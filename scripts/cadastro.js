@@ -35,6 +35,7 @@ for(i=0; i <= radio.length -1; i++){ //carrega todos os radios e para cada um ch
                 
                 <label for="cep-cadastro">CEP
                     <input id="cep-cadastro" class="formulario-cadastro-entrada" type="text" required>
+                    <span id="cep-cadastro-texto"></span>
                 </label>
                 
                 <label for="estado-cadastro">Estado
@@ -95,7 +96,7 @@ function verificaSeASenhaSeRepete() {
     let senhaInputValor2 = senhaInput[1].value
     
     if (senhaInputValor2 != senhaInputValor){
-        senhaInputTexto.innerHTML = `<p class= "entrada-texto">Digite a mesma senha em ambos os campos de senha!<p>`
+        senhaInputTexto.innerHTML = `<p class= "mensagem-erro">Digite a mesma senha em ambos os campos de senha!<p>`
 
         for(let i=0; i<= senhaInput.length -1; i++){
             senhaInput[i].style.borderColor = 'var(--cor1)'  //pegas todos os inputs de senha e pinta a cor da borda

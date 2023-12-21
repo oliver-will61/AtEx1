@@ -1,29 +1,37 @@
 async function buscaEndereco (cep) {
-    //var mensagemErro = document.getElementById('erro');
-   // mensagemErro.innerHTML = "";
+
+    const mensagemErroCep = document.getElementById('cep-cadastro-texto')
+    const cepCadastro = document.getElementById("cep-cadastro")
+
     try {
         var consultaCEP = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
         var consultaCEPConvertida = await consultaCEP.json();
+        
+
         if (consultaCEPConvertida.erro){
             throw Error ('CEP não existente');
         }
 
-        // var cidade = document.getElementById('cidade');
-        // var logradouro = document.getElementById('endereco');
-        let estado = document.getElementById('estado-cadastro');
+        mensagemErroCep.innerHTML = ''
+        cepCadastro.style.borderColor = 'black' //pinta a borda do input de preta
 
-        // cidade.value = consultaCEPConvertida.localidade;
-        // logradouro.value = consultaCEPConvertida.logradouro;
+
+        const cidade = document.getElementById('cidade-cadastro');
+        cidade.value = consultaCEPConvertida.localidade;
+
+        const estado = document.getElementById('estado-cadastro');
         estado.value = consultaCEPConvertida.uf;
-        console.log(estado.value);
 
-        // console.log(consultaCEPConvertida);
-        // return consultaCEPConvertida;
+        const bairro = document.getElementById('bairro-cadastro')
+        bairro.value = consultaCEPConvertida.bairro
+
+        const rua = document.getElementById('rua-cadastro');
+        rua.value = consultaCEPConvertida.logradouro;
+        
+
     }   catch (erro) {
-        // console.log(erro)
-        // mensagemErro.innerHTML =`<p>CEP inválido. tente novamente!</p>`
+
+            mensagemErroCep.innerHTML =`<p class= "mensagem-erro">CEP inválido. tente novamente!</p>`
+            cepCadastro.style.borderColor = 'var(--cor1)' //pinta a borda do input de vermelho
     }
 }
-
-//var cep = document.getElementById('cep');
-//cep.addEventListener("focusout", () => buscaEndereco(cep.value));
