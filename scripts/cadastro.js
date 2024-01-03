@@ -153,13 +153,20 @@ function mandaDadosParaServidor(){
     const cpfInput = document.querySelector("#cpf-cadastro");
 
     // Cria um objeto com os dados dos usuários a serem enviados para o servidor
-    const dadosUsuarios = {
-        nome: nome.value,
-        sobrenome: sobrenome.value,
-        CPF: cpfInput.value,
-        email: emailInput.value,
-        senha: senhaInput.value
+
+    class Usuario {
+        constructor (nome, sobrenome, cpf, email, senha) {
+            this.tipo = 'usuario',
+            this.nome = nome,
+            this.sobrenome = sobrenome,
+            this.cpf = cpf,
+            this.email = email,
+            this.senha = senha
+        }
     }
+
+    const usuario = new Usuario (nome.value,sobrenome.value,cpfInput.value,emailInput.value,senhaInput.value)
+    console.log(usuario.cpf)
 
     // Envia uma solicitação POST para o servidor
     fetch('http://localhost:3000/enviar', {  
@@ -167,7 +174,7 @@ function mandaDadosParaServidor(){
         headers: {
             'Content-type': 'application/json' // Tipo de conteúdo sendo enviado (JSON)
         },
-        body: JSON.stringify(dadosUsuarios) // Converte o objeto em uma string JSON
+        body: JSON.stringify(usuario) // Converte o objeto em uma string JSON
     })
     .then(response => response.text()) // Converte a resposta do servidor para texto
     .then(data => {
