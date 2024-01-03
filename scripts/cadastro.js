@@ -4,6 +4,10 @@ const containerFormularioCadastroJs = document.querySelector('.container-formula
 const botao = document.querySelector('.botao')
 
 
+
+const emailInput = document.querySelector("#email-cadastro")
+const senhaInput = document.querySelectorAll('#senha-cadastro')  // pega todos os inputs de senha
+
 //main ================================================================================================================================================================
 
 for(i=0; i <= radio.length -1; i++){ //carrega todos os radios e para cada um chama a função "obterValorRadio"
@@ -13,12 +17,17 @@ for(i=0; i <= radio.length -1; i++){ //carrega todos os radios e para cada um ch
 
         if (entradaRadioValor== 'Cliente'){
             containerFormularioCadastroJs.innerHTML = `
-                <label for="nome-cadastro">Nome e Sobrenome
-                    <input id="nome-cadastro" class="formulario-cadastro-entrada" type="text" required >
+                <label for="nome-cadastro">Nome
+                    <input id="nome-cadastro" class="formulario-cadastro-entrada" type="text" required name=nome>
+                </label>
+
+                <label for="sobrenome-cadastro">Sobrenome
+                    <input id="sobrenome-cadastro" class="formulario-cadastro-entrada" type="text" required name=sobrenome>
                 </label>
 
                 <label for="cpf-cadastro">CPF
-                    <input id="cpf-cadastro" class="formulario-cadastro-entrada" type="text" required >
+                    <input id="cpf-cadastro" class="formulario-cadastro-entrada" type="text" required name=CPF>
+                    <span id="cpf-cadastro-texto"></span>
                 </label>`
 
         }
@@ -72,12 +81,11 @@ for(i=0; i <= radio.length -1; i++){ //carrega todos os radios e para cada um ch
 }
 
 botao.addEventListener('click', function (){
-    verificaSeASenhaSeRepete()
+    verificaSeASenhaSeRepete();
+    verificaCPF();
+    mandaDadosParaServidor();
     
 })
-
-
-
 
 // funções
 
@@ -89,7 +97,6 @@ function obterValorRadio() { //obtém o valor que está no radio selecionado
 }
 
 function verificaSeASenhaSeRepete() {
-    const senhaInput = document.querySelectorAll('#senha-cadastro')  // pega todos os inputs de senha
     const senhaInputTexto = document.querySelector('#senha-cadastro-texto')  //tag span que aparece em caso de erro
 
     let senhaInputValor = senhaInput[0].value
@@ -112,6 +119,57 @@ function verificaSeASenhaSeRepete() {
         }
     }
 }
+
+function verificaCPF (){
+    const cpfInput = document.querySelector("#cpf-cadastro");
+    const cpfTexto = document.querySelector("#cpf-cadastro-texto")
+    
+    let cpfValor = cpfInput.value
+    console.log(cpfValor.length);
+
+    if (Number.isNaN(cpfValor) == false && cpfValor.length < 11) {
+        cpfTexto.innerHTML = `<p class= "mensagem-erro">CPF inválido!</p>`
+        cpfInput.style.borderColor = 'var(--cor1)'  //pega o input e pinta a cor da borda
+    } else {
+        cpfTexto.innerHTML = ``
+        cpfInput.style.borderColor = 'black'  //pega o input e pinta a cor da borda
+    }
+}
+
+function mandaDadosParaServidor(){
+
+    const nome = document.querySelector("#nome-cadastro");
+    const sobrenome = document.querySelector("#sobrenome-cadastro");
+    const cpfInput = document.querySelector("#cpf-cadastro");
+
+    // Cria um objeto com os dados dos usuários a serem enviados para o servidor
+    const dadosUsuarios = {
+        nome: nome.value,
+        sobrenome: sobrenome.value,
+        CPF: cpfInput.value,
+        email: emailInput.value,
+        senha: senhaInput[0].value
+    }
+
+    console.log(dadosUsuarios);
+
+    // Envia uma solicitação POST para o servidor
+    fetch('http://localhost:3000/enviar', {  
+        method: 'POST', // Método da solicitação
+        headers: {
+            'Content-type': 'application/json' // Tipo de conteúdo sendo enviado (JSON)
+        },
+        body: JSON.stringify(dadosUsuarios) // Converte o objeto em uma string JSON
+    })
+    .then(response => response.text()) // Converte a resposta do servidor para texto
+    .then(data => {
+        console.log('Resposta do servidor:', data); // Log da resposta do servidor
+    })
+    .catch(erro => {
+        console.error('Erro ao enviar dados para o servidor:', erro); // Log de erro, se ocorrer
+    });
+}
+
 
 
 
