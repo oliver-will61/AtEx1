@@ -81,15 +81,17 @@ for(i=0; i <= radio.length -1; i++){ //carrega todos os radios e para cada um ch
 }
 
 botao.addEventListener('click', function (){
-    verificaSeASenhaSeRepete();
-    verificaCPF();
-    mandaDadosParaServidor();
-    
+
+    // validações 
+    let CPF = verificaCPF();
+    let senha = verificaSeASenhaSeRepete();
+
+    if (CPF == true && senha == true){
+        mandaDadosParaServidor();
+    }
 })
 
 // funções
-
-
 
 function obterValorRadio() { //obtém o valor que está no radio selecionado
     const entradaRadio = document.querySelector('.radio[name="opcao"]:checked');
@@ -108,7 +110,7 @@ function verificaSeASenhaSeRepete() {
         for(let i=0; i<= senhaInput.length -1; i++){
             senhaInput[i].style.borderColor = 'var(--cor1)'  //pegas todos os inputs de senha e pinta a cor da borda
         }
-
+        return false
         event.preventDefault();
     } 
 
@@ -117,22 +119,25 @@ function verificaSeASenhaSeRepete() {
         for(let i=0; i<= senhaInput.length -1; i++){
             senhaInput[i].style.borderColor = 'black'  //pegas todos os inputs de senha e pinta a cor da borda
         }
+        return true
     }
 }
 
-function verificaCPF (){
+function verificaCPF(){
     const cpfInput = document.querySelector("#cpf-cadastro");
     const cpfTexto = document.querySelector("#cpf-cadastro-texto")
     
     let cpfValor = cpfInput.value
-    console.log(cpfValor.length);
 
-    if (Number.isNaN(cpfValor) == false && cpfValor.length < 11) {
+    if (Number.isNaN(cpfValor) == false && cpfValor.length < 11 || cpfValor.length > 11) {
         cpfTexto.innerHTML = `<p class= "mensagem-erro">CPF inválido!</p>`
         cpfInput.style.borderColor = 'var(--cor1)'  //pega o input e pinta a cor da borda
+        return false
+
     } else {
         cpfTexto.innerHTML = ``
         cpfInput.style.borderColor = 'black'  //pega o input e pinta a cor da borda
+        return true
     }
 }
 
