@@ -3,79 +3,32 @@ const radio = document.querySelectorAll('.radio') //selecionar todos radios
 const containerFormularioCadastroJs = document.querySelector('.container-formulario-cadastro-js')
 const botao = document.querySelector('.botao')
 
-
-
 const emailInput = document.querySelector("#email-cadastro")
-const senhaInput = document.querySelectorAll('#senha-cadastro')  // pega todos os inputs de senha
+
+const senhaInput = document.querySelector('#senha-cadastro')  
+const senhaInput2 = document.querySelector('#senha-cadastro-2')  
 
 //main ================================================================================================================================================================
 
 for(i=0; i <= radio.length -1; i++){ //carrega todos os radios e para cada um chama a função "obterValorRadio"
     
-    radio[i].addEventListener('click', function() {
+    formCliente() // carregamento padrão do formulario
+
+    radio[i].addEventListener('change', function() {
         entradaRadioValor = obterValorRadio();
 
         if (entradaRadioValor== 'Cliente'){
-            containerFormularioCadastroJs.innerHTML = `
-                <label for="nome-cadastro">Nome
-                    <input id="nome-cadastro" class="formulario-cadastro-entrada" type="text" required name=nome>
-                </label>
-
-                <label for="sobrenome-cadastro">Sobrenome
-                    <input id="sobrenome-cadastro" class="formulario-cadastro-entrada" type="text" required name=sobrenome>
-                </label>
-
-                <label for="cpf-cadastro">CPF
-                    <input id="cpf-cadastro" class="formulario-cadastro-entrada" type="text" required name=CPF>
-                    <span id="cpf-cadastro-texto"></span>
-                </label>`
-
+            formCliente()
         }
 
         else if (entradaRadioValor == 'Estabelecimento'){
-            containerFormularioCadastroJs.innerHTML = `
-                <label for="nomo-empresa-cadastro">Nome da Empresa
-                    <input id="nomo-empresa-cadastro" class="formulario-cadastro-entrada" type="text" required >
-                </label>
-                
-                <label for="cnpj-cadastro">CNPJ
-                    <input id="cnpj-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                </label>
-                
-                <label for="cep-cadastro">CEP
-                    <input id="cep-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                    <span id="cep-cadastro-texto"></span>
-                </label>
-                
-                <label for="estado-cadastro">Estado
-                    <input id="estado-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                </label>
+               
+            formEstabelecimento();
 
-                <label for="cidade-cadastro">Cidade
-                    <input id="cidade-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                </label>
-
-                <label for="bairro-cadastro">Bairro
-                    <input id="bairro-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                </label>
-
-                <label for="rua-cadastro">Rua
-                    <input id="rua-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                </label>
-
-                <label for="numero-cadastro">Número (opicional)
-                    <input id="numero-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                </label>
-
-                <label for="complemento-cadastro">Complemento (opicional)
-                    <input id="complemento-cadastro" class="formulario-cadastro-entrada" type="text" required>
-                </label> `     
-
-                const cepCadastro = document.getElementById("cep-cadastro")
-        
-                cepCadastro.addEventListener('change', function(){
-                    buscaEndereco(cepCadastro.value)
-                })
+            const cepCadastro = document.getElementById("cep-cadastro")
+            cepCadastro.addEventListener('change', function(){
+                buscaEndereco(cepCadastro.value) //função que busca os endereços automaticamente
+            })
         }
     }); 
 }
@@ -93,6 +46,63 @@ botao.addEventListener('click', function (){
 
 // funções
 
+function formCliente() {
+    containerFormularioCadastroJs.innerHTML = `
+        <label for="nome-cadastro">Nome
+            <input id="nome-cadastro" class="formulario-cadastro-entrada" type="text" required name=nome>
+        </label>
+
+        <label for="sobrenome-cadastro">Sobrenome
+            <input id="sobrenome-cadastro" class="formulario-cadastro-entrada" type="text" required name=sobrenome>
+        </label>
+
+        <label for="cpf-cadastro">CPF
+            <input id="cpf-cadastro" class="formulario-cadastro-entrada" type="text" required name=CPF>
+            <span id="cpf-cadastro-texto"></span>
+        </label>`
+
+}
+
+function formEstabelecimento(){
+    containerFormularioCadastroJs.innerHTML = `
+        <label for="nomo-empresa-cadastro">Nome da Empresa
+            <input id="nomo-empresa-cadastro" class="formulario-cadastro-entrada" type="text" required >
+        </label>
+        
+        <label for="cnpj-cadastro">CNPJ
+            <input id="cnpj-cadastro" class="formulario-cadastro-entrada" type="text" required>
+        </label>
+        
+        <label for="cep-cadastro">CEP
+            <input id="cep-cadastro" class="formulario-cadastro-entrada" type="text" required>
+            <span id="cep-cadastro-texto"></span>
+        </label>
+        
+        <label for="estado-cadastro">Estado
+            <input id="estado-cadastro" class="formulario-cadastro-entrada" type="text" required>
+        </label>
+
+        <label for="cidade-cadastro">Cidade
+            <input id="cidade-cadastro" class="formulario-cadastro-entrada" type="text" required>
+        </label>
+
+        <label for="bairro-cadastro">Bairro
+            <input id="bairro-cadastro" class="formulario-cadastro-entrada" type="text" required>
+        </label>
+
+        <label for="rua-cadastro">Rua
+            <input id="rua-cadastro" class="formulario-cadastro-entrada" type="text" required>
+        </label>
+
+        <label for="numero-cadastro">Número (opicional)
+            <input id="numero-cadastro" class="formulario-cadastro-entrada" type="text" required>
+        </label>
+
+        <label for="complemento-cadastro">Complemento (opicional)
+            <input id="complemento-cadastro" class="formulario-cadastro-entrada" type="text" required>
+        </label> `  
+}
+
 function obterValorRadio() { //obtém o valor que está no radio selecionado
     const entradaRadio = document.querySelector('.radio[name="opcao"]:checked');
     return entradaRadio.value
@@ -100,18 +110,13 @@ function obterValorRadio() { //obtém o valor que está no radio selecionado
 
 function verificaSeASenhaSeRepete() {
     const senhaInputTexto = document.querySelector('#senha-cadastro-texto')  //tag span que aparece em caso de erro
-
-    let senhaInputValor = senhaInput[0].value
-    let senhaInputValor2 = senhaInput[1].value
-    
-    if (senhaInputValor2 != senhaInputValor){
+    if (senhaInput2.value != senhaInput.value){
         senhaInputTexto.innerHTML = `<p class= "mensagem-erro">Digite a mesma senha em ambos os campos de senha!<p>`
 
-        for(let i=0; i<= senhaInput.length -1; i++){
-            senhaInput[i].style.borderColor = 'var(--cor1)'  //pegas todos os inputs de senha e pinta a cor da borda
-        }
+        senhaInput.style.borderColor = 'var(--cor1)'
+        senhaInput2.style.borderColor = 'var(--cor1)'
+
         return false
-        event.preventDefault();
     } 
 
     else {
@@ -153,10 +158,8 @@ function mandaDadosParaServidor(){
         sobrenome: sobrenome.value,
         CPF: cpfInput.value,
         email: emailInput.value,
-        senha: senhaInput[0].value
+        senha: senhaInput.value
     }
-
-    console.log(dadosUsuarios);
 
     // Envia uma solicitação POST para o servidor
     fetch('http://localhost:3000/enviar', {  
@@ -174,13 +177,4 @@ function mandaDadosParaServidor(){
         console.error('Erro ao enviar dados para o servidor:', erro); // Log de erro, se ocorrer
     });
 }
-
-
-
-
-
-
-
-
-
 
