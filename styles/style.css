@@ -56,3 +56,41 @@ label{
     cursor:pointer;
     text-decoration: none;
 }
+
+header {
+    padding: 1em;
+    display: flex;
+}
+
+
+.localização-atual{
+    width: 100%;
+    text-align: center;
+}
+
+.conteudo-principal{
+    height: 5000px;
+}
+
+.imagem-estabelecimento{
+    width: 56px;
+    height: 56px;
+}
+
+.menu{
+    background-color: var(--cor5);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border: black solid 1px;
+}
+.menu-lista{
+    display: flex;
+    justify-content:center;
+    gap:62px;
+    padding: 1em;
+}
+
+.menu-lista-itens{
+    text-align: center;
+}
