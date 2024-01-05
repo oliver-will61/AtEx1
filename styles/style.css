@@ -58,7 +58,8 @@ label{
 }
 
 header {
-    padding: 1em;
+    padding: 1em 0 1em 0;
+    margin: 0 1.3em 0 1.3em;
     display: flex;
 }
 
@@ -70,11 +71,32 @@ header {
 
 .conteudo-principal{
     height: 5000px;
+    margin: 0 1.3em 0 1.3em;
 }
 
-.imagem-estabelecimento{
+h2 {
+    margin: 1.5em 0 1.5em 0;
+}
+
+.container-doador{
+    display: flex;  
+    gap:12px;
+    align-items: center;
+}
+
+.imagem-doador{
     width: 56px;
     height: 56px;
+    border-radius: 30px;
+}
+
+.nome-doador{
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.localização-doador{
+    font-size: 12px;
 }
 
 .menu{
@@ -87,10 +109,16 @@ header {
 .menu-lista{
     display: flex;
     justify-content:center;
-    gap:62px;
-    padding: 1em;
+    gap:60px;
+    padding: 1em 1.4em 1em 1.4em;
 }
 
 .menu-lista-itens{
     text-align: center;
+}
+
+.menu-icones {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 2px;
 }
