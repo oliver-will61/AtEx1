@@ -108,8 +108,7 @@ h2 {
 }
 .menu-lista{
     display: flex;
-    justify-content:center;
-    gap:60px;
+    justify-content:space-between;
     padding: 1em 1.4em 1em 1.4em;
 }
 
@@ -118,7 +117,7 @@ h2 {
 }
 
 .menu-icones {
-    width: 32px;
-    height: 32px;
+    width: 2em;
+    height: 2em;
     margin-bottom: 2px;
 }
