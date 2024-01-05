@@ -1,5 +1,5 @@
-@import url(/AtEx1-main/styles/reset.css);
-@import url(/AtEx1-main/styles//cadastro.css);
+@import url(reset.css);
+@import url(cadastro.css);
 
 :root{
     --cor1:#CC3733;
