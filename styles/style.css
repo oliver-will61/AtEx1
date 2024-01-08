@@ -1,5 +1,7 @@
 @import url(reset.css);
 @import url(cadastro.css);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 
 :root{
     --cor1:#CC3733;
@@ -9,9 +11,10 @@
     --cor5: white;
 }
 
+
 body{
     background-color:var(--cor5);
-    font-size: 1em;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container-login {
@@ -61,12 +64,21 @@ header {
     padding: 1em 0 1em 0;
     margin: 0 1.3em 0 1.3em;
     display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.logo-icone{
+    width: 50px;
+    height: 50px;
 }
 
 
 .localização-atual{
     width: 100%;
     text-align: center;
+    font-size: 1.1em;
+    font-weight: 500
 }
 
 .conteudo-principal{
@@ -76,27 +88,30 @@ header {
 
 h2 {
     margin: 1.5em 0 1.5em 0;
+    font-size: 1.15em;
 }
 
 .container-doador{
     display: flex;  
     gap:12px;
     align-items: center;
+    margin-bottom: 2em
 }
 
 .imagem-doador{
-    width: 56px;
-    height: 56px;
+    width: 65px;
+    height: 65px;
     border-radius: 30px;
 }
 
 .nome-doador{
     margin-bottom: 6px;
-    font-size: 14px;
+    font-size: 1.02em;
 }
 
 .localização-doador{
-    font-size: 12px;
+    font-size: 0.9em;
+    font-weight: 300;
 }
 
 .menu{
@@ -109,7 +124,7 @@ h2 {
 .menu-lista{
     display: flex;
     justify-content:space-between;
-    padding: 1em 1.4em 1em 1.4em;
+    padding: 0.8em 1.4em 0.8em 1.4em;
 }
 
 .menu-lista-itens{
@@ -117,7 +132,11 @@ h2 {
 }
 
 .menu-icones {
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
     margin-bottom: 2px;
+}
+
+.menu-texto{
+    font-size: 0.9em;
 }
