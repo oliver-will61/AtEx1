@@ -1,0 +1,23 @@
+[
+    {
+        "nomeDoador": "Crar Crese",
+        "localização":"1.5 Km",
+        "img": "assets/logo_generica.png"
+    },
+
+    {
+        "nomeDoador": "Romana",
+        "localização":"1.5 Km",
+        "img": "assets/logo_generica2.jpeg"
+    },
+
+    {
+        "nomeDoador": "Bakerry",
+        "localização":"1.5 Km",
+        "img": "assets/logo_generica3.jpeg"
+    }
+
+]
+
+
+
