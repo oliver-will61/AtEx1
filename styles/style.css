@@ -73,6 +73,16 @@ h2 {
     font-weight: 300;
 }
 
+.container-btn-add-doacao{
+    position: relative;
+}
+
+.btn-add-doacao{
+    position: fixed;
+    width: 52px;
+    height: 52px;
+}
+
 .menu{
     background-color: var(--cor5);
     position: fixed;

@@ -1,0 +1,13 @@
+ aumentar o tamanho da fonte no main e diminuir um pouco o tamanho dos icones do nav
+ 
+no login, colocor o type passoword
+
+criar objetos dos doadores e salvar em json
+usar os dados salvo para carregar a pagina de doadores
+mapear o banco de dados colocar id e relacionamentos
+
+
+Fazer o botão para adicionar um anuncio
+
+fazer a tela que mostra a descrição do anuncio e endereço onde o alimento está sendo doado
+
