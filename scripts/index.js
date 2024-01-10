@@ -1,5 +1,4 @@
 const conteudoPrincipal = document.querySelector(".conteudo-principal");
-let doadorSelecionado ="teste"
 
 fetch("../dados_doador.json") //lê o arquivo JSON
     .then(response => response.json()
@@ -18,14 +17,25 @@ fetch("../dados_doador.json") //lê o arquivo JSON
             </div>`
         });
 
+
         const doadores = document.querySelectorAll(".container-doador")
 
         doadores.forEach((elemente) => elemente.addEventListener('click',  (event) => {
-            //doadorSelecionado = event.currentTarget.querySelector(".nome-doador").textContent;
+            doadorSelecionado = event.currentTarget.querySelector(".nome-doador").textContent;
             conteudoPrincipal.innerHTML =""
+
+            descricaoDoador(doadorSelecionado)
         }))
 
     }))
 
     .catch(erro => console.log("Erro ao carregar o arquivo JSON!"))
+
+function descricaoDoador(doadorSelecionado){
+    const tituloHeader = document.querySelector(".titulo-header")
+    const subtitulo = document.querySelector(".subtitulo")
+
+    tituloHeader.innerHTML = doadorSelecionado
+    conteudoPrincipal.innerHTML = `<h2 class="subtitulo">Doando</h2>`
+}
 
