@@ -1,4 +1,5 @@
 const conteudoPrincipal = document.querySelector(".conteudo-principal");
+let doadorSelecionado ="teste"
 
 fetch("../dados_doador.json") //lê o arquivo JSON
     .then(response => response.json()
@@ -19,8 +20,9 @@ fetch("../dados_doador.json") //lê o arquivo JSON
 
         const doadores = document.querySelectorAll(".container-doador")
 
-        doadores.forEach((elemente) => elemente.addEventListener('click',  () => {
-            window.location.href = "pages/doador.html"
+        doadores.forEach((elemente) => elemente.addEventListener('click',  (event) => {
+            //doadorSelecionado = event.currentTarget.querySelector(".nome-doador").textContent;
+            conteudoPrincipal.innerHTML =""
         }))
 
     }))

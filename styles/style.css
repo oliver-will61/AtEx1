@@ -33,7 +33,7 @@ header {
 }
 
 
-.localização-atual{
+.localização-atual, .titulo-header{
     width: 100%;
     text-align: center;
     font-size: 1.1em;
