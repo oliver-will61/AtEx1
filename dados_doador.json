@@ -3,6 +3,8 @@
         "nomeDoador": "Crar Crese",
         "localização":"1.5 Km",
         "img": "assets/logo_generica.png",
+        "produto": "Farinha",
+        "descricao": "um quilo de farinha da marca Premium",
         "end": {
             "rua":"Rua das Flores",
             "numero":"123",

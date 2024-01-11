@@ -66,25 +66,30 @@ function descricaoDoador(doadorSelecionado){
 
     const objetoSelecionado = dadosDoadores.find(objeto => objeto.nomeDoador === doadorSelecionado)
     
-
+    const logo = document.querySelector(".logo-icone")
     const tituloHeader = document.querySelector(".titulo-header")
     const subtitulo = document.querySelector(".subtitulo")
 
     conteudoPrincipal.innerHTML ="" // deixa em branco a tela principa
+
+    logo.src = `${objetoSelecionado.img}`;
+    logo.style = "border-radius: 30px;"
+
     tituloHeader.innerHTML = doadorSelecionado
+
     conteudoPrincipal.innerHTML = `
+
         <h2 class="subtitulo">Doando</h2>
-        <p>1 kg de Farinha</p>
+        <p class="produto-doador">${objetoSelecionado.produto}</p>
 
         <h2 class="subtitulo">Descrição</h2>
-        <p> Um quilo de farrinha da marca Premium.</p>
+        <p class="descição-doador">${objetoSelecionado.descricao}</p>
 
         <h2 class="subtitulo">Endereço</h2>
-        <span class="endereco-doador">Rua das Flores, 123</span>
-        <span class="endereco-doador">Bairro Central</span>
-        <span class="endereco-doador">Florianopolis</span>
-        <span class="endereco-doador">Santa Catarina</span>
-        <span class="endereco-doador">CEP: 12345-678</span>
+        <span>
+            ${objetoSelecionado.end.rua}, ${objetoSelecionado.end.numero}, ${objetoSelecionado.end.bairro},
+            ${objetoSelecionado.end.cidade}, ${objetoSelecionado.end.estado}, ${objetoSelecionado.end.cep}
+        </span>
     `
 }
 
