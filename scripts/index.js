@@ -1,7 +1,5 @@
 const conteudoPrincipal = document.querySelector(".conteudo-principal");
 
-
-
 carregaPaginaPrincipal();
 
 function carregaPaginaPrincipal(){
@@ -27,9 +25,8 @@ function carregaPaginaPrincipal(){
 
         doadores.forEach((elemente) => elemente.addEventListener('click',  (event) => {
             doadorSelecionado = event.currentTarget.querySelector(".nome-doador").textContent;
-            conteudoPrincipal.innerHTML =""
 
-            descricaoDoador(doadorSelecionado)
+            descricaoDoador(doadorSelecionado) //carrega a tela do doador
         }))
 
     }))
@@ -41,7 +38,15 @@ function descricaoDoador(doadorSelecionado){
     const tituloHeader = document.querySelector(".titulo-header")
     const subtitulo = document.querySelector(".subtitulo")
 
+    conteudoPrincipal.innerHTML ="" // deixa em branco a tela principa
     tituloHeader.innerHTML = doadorSelecionado
-    conteudoPrincipal.innerHTML = `<h2 class="subtitulo">Doando</h2>`
+    conteudoPrincipal.innerHTML = `
+        <h2 class="subtitulo">Doando</h2>
+        <p>1 kg de Farinha</p>
+        <h2 class="subtitulo">Descrição</h2>
+        <p> Um quilo de farrinha da marca Premium.</p>
+        <h2 class="subtitulo">Endereço</h2>
+
+    `
 }
 

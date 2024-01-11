@@ -2,7 +2,15 @@
     {
         "nomeDoador": "Crar Crese",
         "localização":"1.5 Km",
-        "img": "assets/logo_generica.png"
+        "img": "assets/logo_generica.png",
+        "end": {
+            "rua":"Rua das Flores",
+            "numero":"123",
+            "bairro": "Bairro Central",
+            "cidade": "Florianopólis",
+            "estado": "Santa Catarina",
+            "cep": "12345-678"
+        }
     },
 
     {
