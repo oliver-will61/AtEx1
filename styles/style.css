@@ -23,8 +23,8 @@ header {
     padding: 1em 0 1em 0;
     margin: 0 1.3em 0 1.3em;
     display: flex;
-    text-align: center;
     align-items: center;
+    gap: 1.5em;
 }
 
 .logo-icone{
@@ -35,7 +35,6 @@ header {
 
 .localização-atual, .titulo-header{
     width: 100%;
-    text-align: center;
     font-size: 1.1em;
     font-weight: 500
 }
@@ -50,11 +49,12 @@ header {
     font-size: 1.15em;
 }
 
+
 .container-doador{
     display: flex;  
     gap:12px;
     align-items: center;
-    margin-bottom: 2em
+    margin-bottom: 2em;
 }
 
 .imagem-doador{
