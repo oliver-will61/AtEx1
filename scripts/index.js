@@ -1,6 +1,11 @@
 const conteudoPrincipal = document.querySelector(".conteudo-principal");
 
-fetch("../dados_doador.json") //lê o arquivo JSON
+
+
+carregaPaginaPrincipal();
+
+function carregaPaginaPrincipal(){
+    fetch("../dados_doador.json") //lê o arquivo JSON
     .then(response => response.json()
     .then(dadosDoador => {
 
@@ -29,7 +34,8 @@ fetch("../dados_doador.json") //lê o arquivo JSON
 
     }))
 
-    .catch(erro => console.log("Erro ao carregar o arquivo JSON!"))
+    .catch(erro => console.log("Erro ao carregar o arquivo JSON!"));
+}
 
 function descricaoDoador(doadorSelecionado){
     const tituloHeader = document.querySelector(".titulo-header")

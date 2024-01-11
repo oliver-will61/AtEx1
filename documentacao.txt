@@ -10,4 +10,5 @@ mapear o banco de dados colocar id e relacionamentos
 Fazer o botão para adicionar um anuncio
 
 fazer a tela que mostra a descrição do anuncio e endereço onde o alimento está sendo doado
+diminuir o tamanho do botão e colocar ele mais a esquerda
 
