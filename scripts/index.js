@@ -64,6 +64,9 @@ function eventoClickParaCadaDoador(){
 function descricaoDoador(doadorSelecionado){
     //deixa a tela principal em branco e escreve a descricao de cada doador
 
+    const objetoSelecionado = dadosDoadores.find(objeto => objeto.nomeDoador === doadorSelecionado)
+    
+
     const tituloHeader = document.querySelector(".titulo-header")
     const subtitulo = document.querySelector(".subtitulo")
 
