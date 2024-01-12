@@ -16,7 +16,6 @@
 body{
     background-color:var(--cor5);
     font-family: 'Poppins', sans-serif;
-    height: 140vh;
 }
 
 
@@ -42,6 +41,7 @@ header {
 
 .conteudo-principal{
     margin: 0 0.4em;
+    height: 140vh;
 }
 
 .subtitulo {
@@ -104,6 +104,11 @@ header {
     margin-right: 1.3em;
     margin-bottom: 2em;
 
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
 }
 
 .menu{
