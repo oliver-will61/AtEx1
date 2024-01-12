@@ -80,13 +80,19 @@ function descricaoDoador(doadorSelecionado){
     conteudoPrincipal.innerHTML = `
 
         <h2 class="subtitulo">Doando</h2>
-        <p class="produto-doador">${objetoSelecionado.produto}</p>
+        <p class="texto-doador">${objetoSelecionado.produto}</p>
+
+        <div class="container-img-produto-doador">
+            <img class="img-produto-doador" src=${objetoSelecionado.imgProduto}>
+        </div>
+
 
         <h2 class="subtitulo">Descrição</h2>
-        <p class="descição-doador">${objetoSelecionado.descricao}</p>
+        <p class="texto-doador">${objetoSelecionado.descricao}</p>
 
         <h2 class="subtitulo">Endereço</h2>
-        <span>
+
+        <span class="texto-doador">
             ${objetoSelecionado.end.rua}, ${objetoSelecionado.end.numero}, ${objetoSelecionado.end.bairro},
             ${objetoSelecionado.end.cidade}, ${objetoSelecionado.end.estado}, ${objetoSelecionado.end.cep}
         </span>

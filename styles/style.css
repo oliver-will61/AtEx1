@@ -40,13 +40,14 @@ header {
 }
 
 .conteudo-principal{
-    height: 5000px;
+    height: 100vh;
     margin: 0 1.3em 0 1.3em;
 }
 
 .subtitulo {
     margin: 1.5em 0 1.5em 0;
     font-size: 1.15em;
+    font-weight: 500;
 }
 
 
@@ -71,6 +72,22 @@ header {
 .localização-doador{
     font-size: 0.9em;
     font-weight: 300;
+}
+
+.texto-doador{
+    margin-bottom: 1.5em;
+    font-weight: 300;
+}
+
+.container-img-produto-doador{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.img-produto-doador{
+    width: 100%;
+    text-align: center;
 }
 
 .btn-add-doacao{
