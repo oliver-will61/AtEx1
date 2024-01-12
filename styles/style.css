@@ -16,13 +16,14 @@
 body{
     background-color:var(--cor5);
     font-family: 'Poppins', sans-serif;
-    height: 120vh;
+    height: 115vh;
+    
 }
 
 
 header {
     padding: 1em 0 1em 0;
-    margin: 0 1.3em 0 1.3em;
+    margin: 0 0.3em;
     display: flex;
     align-items: center;
     gap: 1.5em;
@@ -41,7 +42,7 @@ header {
 }
 
 .conteudo-principal{
-    margin: 0 1.3em 0 1.3em;
+    margin: 0 0.3em;
 }
 
 .subtitulo {
