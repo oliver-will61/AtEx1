@@ -7,12 +7,12 @@
         "produto": "Farinha",
         "descricao": "um quilo de farinha da marca Premium",
         "end": {
-            "rua":"Rua das Flores",
-            "numero":"123",
+            "rua":"Avenida Paulista",
+            "numero":"2000",
             "bairro": "Bairro Central",
-            "cidade": "Florianopólis",
-            "estado": "Santa Catarina",
-            "cep": "12345-678"
+            "cidade": "São Paulo",
+            "estado": "São Paulo",
+            "cep": "01311-100"
         }
     },
 
@@ -24,12 +24,12 @@
         "produto": "Feijão",
         "descricao": "um quilo de feijão da marca Tradicional Sabor",
         "end": {
-            "rua":"Rua das Flores",
-            "numero":"123",
+            "rua":"Avenida Paulista",
+            "numero":"2000",
             "bairro": "Bairro Central",
-            "cidade": "Florianopólis",
-            "estado": "Santa Catarina",
-            "cep": "12345-678"
+            "cidade": "São Paulo",
+            "estado": "São Paulo",
+            "cep": "01311-100"
         }
     },
 
@@ -41,13 +41,13 @@
         "produto":"Café",
         "descricao": "400 gramas de café em pó da marca Tradicional Sabor",
         "end": {
-            "rua":"Rua das Flores",
-            "numero":"123",
+            "rua":"Avenida Paulista",
+            "numero":"2000",
             "bairro": "Bairro Central",
-            "cidade": "Florianopólis",
-            "estado": "Santa Catarina",
-            "cep": "12345-678"
-        }   
+            "cidade": "São Paulo",
+            "estado": "São Paulo",
+            "cep": "01311-100"
+        } 
     }
 ]
 

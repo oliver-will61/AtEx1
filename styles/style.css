@@ -16,6 +16,7 @@
 body{
     background-color:var(--cor5);
     font-family: 'Poppins', sans-serif;
+    height: 120vh;
 }
 
 
@@ -40,7 +41,6 @@ header {
 }
 
 .conteudo-principal{
-    height: 100vh;
     margin: 0 1.3em 0 1.3em;
 }
 
