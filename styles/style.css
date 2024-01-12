@@ -16,7 +16,7 @@
 body{
     background-color:var(--cor5);
     font-family: 'Poppins', sans-serif;
-    height: 160vh;
+    height: 140vh;
 }
 
 
@@ -88,6 +88,11 @@ header {
 .img-produto-doador{
     width: 100%;
     text-align: center;
+}
+
+.container-mapa{
+    width: 100%;
+    height: 300px;
 }
 
 .btn-add-doacao{
