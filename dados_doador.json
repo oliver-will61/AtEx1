@@ -18,15 +18,34 @@
     {
         "nomeDoador": "Romana",
         "localização":"1.5 Km",
-        "img": "assets/logo_generica2.jpeg"
+        "img": "assets/logo_generica2.jpeg",
+        "produto": "Feijão",
+        "descricao": "um quilo de feijão da marca Tradicional Sabor",
+        "end": {
+            "rua":"Rua das Flores",
+            "numero":"123",
+            "bairro": "Bairro Central",
+            "cidade": "Florianopólis",
+            "estado": "Santa Catarina",
+            "cep": "12345-678"
+        }
     },
 
     {
         "nomeDoador": "Bakerry",
         "localização":"1.5 Km",
-        "img": "assets/logo_generica3.jpeg"
+        "img": "assets/logo_generica3.jpeg",
+        "produto":"Café",
+        "descricao": "400 gramas de café em pó da marca Tradicional Sabor",
+        "end": {
+            "rua":"Rua das Flores",
+            "numero":"123",
+            "bairro": "Bairro Central",
+            "cidade": "Florianopólis",
+            "estado": "Santa Catarina",
+            "cep": "12345-678"
+        }   
     }
-
 ]
 
 
