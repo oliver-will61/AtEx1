@@ -11,7 +11,6 @@ const senhaInput2 = document.querySelector('#senha-cadastro-2')
 botao.addEventListener('click', function (){
 
     // validações 
-    //let CPF = verificaCPF();
     let senha = verificaSeASenhaSeRepete();
 
     if (senha == true){
@@ -59,7 +58,6 @@ function mandaDadosParaServidor(){
     }
 
     const usuario = new Usuario (nome.value,sobrenome.value,emailInput.value,senhaInput.value)
-    console.log(usuario.cpf)
 
     // Envia uma solicitação POST para o servidor
     fetch('http://localhost:3000/enviar', {  

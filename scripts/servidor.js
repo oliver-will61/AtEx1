@@ -25,17 +25,17 @@ sequelize.authenticate()
 const Usuarios = sequelize.define('doadores', {
        
     nome: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     },
     sobrenome: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     },
 
     email: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     },
     senha: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     }
 })
 
