@@ -69,11 +69,14 @@ function descricaoDoador(doadorSelecionado){
     const logo = document.querySelector(".logo-icone")
     const tituloHeader = document.querySelector(".titulo-header")
     const subtitulo = document.querySelector(".subtitulo")
+    const footer = document.querySelector(".rodape")
 
     conteudoPrincipal.innerHTML ="" // deixa em branco a tela principa
 
     logo.src = `${objetoSelecionado.img}`;
     logo.style = "border-radius: 30px;"
+
+    footer.style = "display:block";
 
     tituloHeader.innerHTML = doadorSelecionado
 

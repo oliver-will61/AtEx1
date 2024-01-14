@@ -43,7 +43,8 @@ header {
 
 .conteudo-principal{
     margin: 0 0.4em;
-    height: 1000px;
+    /* height: 100vh; */
+    /* margin-bottom: 500px; */
 }
 
 .subtitulo {
@@ -93,8 +94,13 @@ header {
 }
 
 .container-mapa{
-    width: 100%;
-    height: 300px;
+    height: 18em;
+    margin-bottom: 4em;
+    
+}
+
+place-card.place-card-medium{
+ display: none;
 }
 
 .btn-add-doacao{
@@ -108,9 +114,13 @@ header {
 
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
+.rodape{
+    display: none;
+    background-color: var(--cor1);
+    padding: 1.5em;
+    color: var(--cor5);
+    text-align: center;
+    margin-bottom: 4.3em;
 }
 
 .menu{
