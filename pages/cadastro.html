@@ -14,12 +14,13 @@
     </header>
 
     <main class="container-cadastro">
-        <form class="formualario-cadastro">
 
-            <div class="container-formulario-cadastro">
+        <div class="formualario-cadastro">
+
+            <form class="container-formulario-cadastro">
 
                 <label for="nome-cadastro">Nome
-                    <input id="nome-cadastro" class="formulario-cadastro-entrada" type="text" required name=nome>
+                    <input id="nome-cadastro" class="formulario-cadastro-entrada" type="text" name=nome required>
                 </label>
         
                 <label for="sobrenome-cadastro">Sobrenome
@@ -27,15 +28,15 @@
                 </label>
 
                 <label for="email-cadastro" class="cadastro-rotulo">Email
-                    <input id="email-cadastro" class="formulario-cadastro-entrada" type="text" required name="email">
+                    <input id="email-cadastro" class="formulario-cadastro-entrada" type="email" required name="email" autocomplete="username">
                 </label>
     
                 <label for="senha-cadastro" class="cadastro-rotulo">Senha
-                    <input id="senha-cadastro" class="formulario-cadastro-entrada" type="password" required name="senha">
+                    <input id="senha-cadastro" class="formulario-cadastro-entrada" type="password" required name="senha" autocomplete="new-password">
                 </label>
     
                 <label for="senha-cadastro" class="cadastro-rotulo">Escreva a senha novamente
-                    <input id="senha-cadastro-2" class="formulario-cadastro-entrada" type="password" required >
+                    <input id="senha-cadastro-2" class="formulario-cadastro-entrada" type="password" required  autocomplete="new-password">
                     <span id="senha-cadastro-texto"></span>
                 </label>
 
