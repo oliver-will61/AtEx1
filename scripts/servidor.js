@@ -21,27 +21,21 @@ sequelize.authenticate()
         console.log("Falha ao se conectar com o banco de dados: " + erro)
     });
 
-// Define um modelo para a tabela 'usuariosTeste' criando uma tabela
-const Usuarios = sequelize.define('usuarios', {
-    
-    tipo: {
-        type: Sequelize.TEXT
-    },
-    
+// Define um modelo para a tabela 'usuariosTeste' criando uma tabela caso a tabela não exista
+const Usuarios = sequelize.define('doadores', {
+       
     nome: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     },
     sobrenome: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     },
-    cpf: {
-        type: Sequelize.TEXT
-    },
+
     email: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     },
     senha: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(100)  //varchar (100)
     }
 })
 
@@ -59,10 +53,10 @@ app.use(bodyParser.json()); // Configura o middleware para análise de JSON
 
 // Rota POST para receber dados do cliente e inserir no banco de dados
 app.post('/enviar', (req, res) => {
-    const {tipo, nome, sobrenome, cpf, email, senha} = req.body;
+    const {nome, sobrenome, email, senha} = req.body;
 
     // Cria uma nova entrada na tabela 'usuariosTeste'
-    Usuarios.create({ tipo, nome, sobrenome, cpf, email, senha})
+    Usuarios.create({nome, sobrenome, email, senha})
     .then(() => {
         console.log('Dados inseridos com sucesso!')
         res.json({ mensagem: 'Dados enviados com sucesso!' })
