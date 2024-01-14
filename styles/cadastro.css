@@ -32,6 +32,10 @@
     margin-bottom: 0.8em;
 }
 
+.container-formulario-cadastro{
+    margin: 0.4em 0 1.4em 0
+}
+
 .formulario-cadastro-entrada{
     display: block;
     border: 1px solid black;
