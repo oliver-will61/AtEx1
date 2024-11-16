@@ -2,8 +2,8 @@
     {
         "nomeDoador": "Crar Crese",
         "localização":"1.5 Km",
-        "img": "assets/logo_generica.png",
-        "imgProduto": "assets/imagem_descricao/farrinha.jpeg",
+        "img": "/src/public//assets/logo_generica.png",
+        "imgProduto": "/src/public//assets/imagem_descricao/farrinha.jpeg",
         "produto": "Farinha",
         "descricao": "um quilo de farinha da marca Premium",
         "end": {
@@ -19,8 +19,8 @@
     {
         "nomeDoador": "Romana",
         "localização":"1.5 Km",
-        "img": "assets/logo_generica2.jpeg",
-        "imgProduto": "assets/imagem_descricao/feijao_1.webp",
+        "img": "/src/public//assets/logo_generica2.jpeg",
+        "imgProduto": "/src/public//assets/imagem_descricao/feijao_1.webp",
         "produto": "Feijão",
         "descricao": "um quilo de feijão da marca Tradicional Sabor",
         "end": {
@@ -36,8 +36,8 @@
     {
         "nomeDoador": "Bakerry",
         "localização":"1.5 Km",
-        "img": "assets/logo_generica3.jpeg",
-        "imgProduto": "assets/imagem_descricao/café.jpeg",
+        "img": "/src/public//assets/logo_generica3.jpeg",
+        "imgProduto": "/src/public//assets/imagem_descricao/café.jpeg",
         "produto":"Café",
         "descricao": "400 gramas de café em pó da marca Tradicional Sabor",
         "end": {
