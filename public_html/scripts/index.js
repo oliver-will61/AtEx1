@@ -7,7 +7,7 @@ main();
 
 async function carregaJSON(){
     try {
-        const response = await fetch("../dados_doador.json") //carrega o arquivo JSON
+        const response = await fetch("dados_doador.json") //carrega o arquivo JSON
         dadosDoadores = await response.json(); //lista dos objetos, convetidos para javascript
         return dadosDoadores
 
