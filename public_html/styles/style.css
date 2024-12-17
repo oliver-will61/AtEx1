@@ -1,3 +1,5 @@
+/*
+
 @import url(../styles/reset.css);
 @import url(../styles/login.css);
 @import url(../styles/cadastro.css);
@@ -10,7 +12,7 @@
     --cor3: #FD9B98;
     --cor4: #FFC7C5;
     /* --cor5: white; */
-    --cor5: black;
+    /*--cor5: black;
 }
 
 
@@ -46,7 +48,9 @@ header {
     margin: 0 0.4em;
     /* height: 100vh; */
     /* margin-bottom: 500px; */
-}
+/*}
+
+/*
 
 .subtitulo {
     margin: 1.5em 0 1.5em 0;
