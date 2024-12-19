@@ -1,0 +1,14 @@
+
+.*
+!.gitignore
+
+.trash/
+logs/
+mail/
+public_ftp/
+ssl/
+tmp/
+acess-logs/
+
+#diretório original do desk-ubuntu
+node_modules/
