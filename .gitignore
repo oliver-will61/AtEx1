@@ -9,6 +9,19 @@ public_ftp/
 ssl/
 tmp/
 acess-logs/
+nodevenv/
+bin/
+etc/
 
 #diretório original do desk-ubuntu
 node_modules/
+
+#arquivos do node
+
+applications/repositories/
+applications/temp/
+applications/server.js/node_modules/
+applications/server.js/app.yaml
+applications/server.js/start.json
+applications/server.js/stdout.log
+
