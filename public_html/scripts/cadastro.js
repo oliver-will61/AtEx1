@@ -14,7 +14,7 @@ botao.addEventListener('click', function (){
     let senha = verificaSeASenhaSeRepete();
 
     if (senha == true){
-        mandaDadosParaServidor();
+        mandaDadosParaServidor(); // cria a tupla do usuario para mandar para o banco de dados
     }
 })
 
@@ -41,38 +41,34 @@ function verificaSeASenhaSeRepete() {
     }
 }
 
-function mandaDadosParaServidor(){
+function mandaDadosParaServidor(){  
 
     const nome = document.querySelector("#nome-cadastro");
     const sobrenome = document.querySelector("#sobrenome-cadastro");
 
-    // Cria um objeto com os dados dos usuários a serem enviados para o servidor
-
-    class Usuario {
-        constructor (nome, sobrenome, email, senha) {
-            this.nome = nome,
-            this.sobrenome = sobrenome,
-            this.email = email,
-            this.senha = senha
-        }
+    const usuario = {
+        email: emailInput.value,
+        senha: senhaInput.value,
+        nome: nome.value,
+        sobrenome: sobrenome.value
     }
 
-    const usuario = new Usuario (nome.value,sobrenome.value,emailInput.value,senhaInput.value)
 
     // Envia uma solicitação POST para o servidor
-    fetch('http://localhost:3000/enviar', {  
+    fetch('http://localhost:58873/submit', {  
         method: 'POST', // Método da solicitação
         headers: {
             'Content-type': 'application/json' // Tipo de conteúdo sendo enviado (JSON)
         },
         body: JSON.stringify(usuario) // Converte o objeto em uma string JSON
     })
+      // a função fetch gera uma promise e o método then() é usado para processar a resposta da requisição
     .then(response => response.text()) // Converte a resposta do servidor para texto
-    .then(data => {
-        console.log('Resposta do servidor:', data); // Log da resposta do servidor
+    .then(data => {  // Depois que a resposta é convertida em texto, ela é processada
+        console.log('Resposta do servidor:', data); // Exibe a resposta do servidor no console
     })
-    .catch(erro => {
-        console.error('Erro ao enviar dados para o servidor:', erro); // Log de erro, se ocorrer
+    .catch(erro => { // Caso ocorra algum erro durante o processo (como falha de conexão), captura o erro
+        console.error('Erro ao enviar dados para o servidor:', erro); // Exibe uma mensagem de erro no console
     });
 }
 
