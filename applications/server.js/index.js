@@ -1,8 +1,9 @@
 //libs ========================================================================
 
-const express = require('express');
-const path = require('path') // Necessário para manipular caminhos de diretórios
-const cadastroRouter = require ('../../etc/willi4776.c44.integrator.host/routes/cadastro-rota');
+import express from 'express';
+import path from 'path'  // Necessário para manipular caminhos de diretórios
+import cadastroRouter from './routes/cadastro-rota.js'
+
 const app = express();
 const port = process.env.PORT || 58873 // porta do servidor
 

@@ -1,4 +1,5 @@
-import express from '../../../applications/server.js';
+import express from 'express';
+
 import {connectionPromise} from '../config/db.js'
 
 const router = express.Router(); // Cria uma nova instância do roteador do Express para definir rotas separadas
