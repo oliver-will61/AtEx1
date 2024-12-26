@@ -1,7 +1,20 @@
 //libs ========================================================================
 
 import express from 'express';
+
+//path
 import path from 'path'  // Necessário para manipular caminhos de diretórios
+import {fileURLToPath} from 'url' // Para converter URL em caminho de arquivo
+
+// 1. Obtém a URL do módulo atual (o script que está sendo executado)
+const __filename = fileURLToPath(import.meta.url);
+
+// 2. Converte a URL para o caminho local (o diretório onde o arquivo está)
+const __dirname = path.dirname(__filename);
+console.log(__dirname);  // Exibe o diretório atual onde o arquivo está localizado
+
+
+
 import cadastroRouter from './routes/cadastro-rota.js'
 
 const app = express();
