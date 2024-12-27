@@ -2,11 +2,11 @@
 import mysql from 'mysql2/promise';  // Importa a biblioteca mysql2, permitindo o uso de promessas com o MySQL
 
 
-const userdb = process.env.USERDB
-const passwdb = process.env.PASSWDB
-const database = process.env.DATABASE
+const userdb = process.env.userdb
+const passwdb = process.env.passwdb
+const database = process.env.database
 const port = 3306 // Porta padrão do MySQL
-const host = process.env.HOST
+const host = process.env.host
 
 async function initDatabase(){
     try{

@@ -46,6 +46,7 @@ app.get('/', (req, res) => {
 });
 
 //rota para lidar com cadastro (usadno o roteador)
+console.log('Carregando roteador de cadastro...');
 app.use('/', cadastroRouter) // integra o roteador para lidar com rotas especificas
 
 
