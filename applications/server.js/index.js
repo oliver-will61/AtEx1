@@ -1,5 +1,7 @@
 //libs ========================================================================
 
+import https from 'https'
+import fs from 'fs';
 import express from 'express';
 
 //path
@@ -19,6 +21,13 @@ import cadastroRouter from './routes/cadastro-rota.js'
 
 const app = express();
 const port = process.env.PORT || 58873 // porta do servidor
+
+
+//certificado SSl e chave privada
+const options = {
+    key: fs.readFileSync('../../ssl/keys/c3c24_9e075_f5813831de0bc50b2e6c5517889aa430.key'),
+    cert: fs.readFileSync('../../ssl/certs/willi4776_c44_integrator_host_c3c24_9e075_1766881105_68c068215218ede05a230744a7c9abb3.crt')
+}
 
 
 
@@ -52,6 +61,7 @@ app.use('/', cadastroRouter) // integra o roteador para lidar com rotas especifi
 
 // Server ===================================================================
 
-app.listen(port, () => {
-   console.log(`Servidor iniciado na porta: ${port}`)
-})
+
+https.createServer(options, app).listen(port, ()=>{
+    console.log(`Servidor HTTPS rodando na porta ${port}`)
+});
