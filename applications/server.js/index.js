@@ -53,7 +53,7 @@ async function initDatabase(){
 // Configuração do HTTPS (Certificado SSL) ==================================
 
 const keyPath = path.join(__dirname, '../../ssl/keys/c3346_c4321_5cd879379917dde79c79f4d61a8e766f.key');
-const certPath = path.join(__dirname, '../../ssl/certs/autodiscover_willi4776_c44_integrator_host_c3346_c4321_1743202041_d8458e8fa1a3586e9c4d9aa0dbaf2ce0.crt');
+const certPath = path.join(__dirname, '../../ssl/certs/certificado_completo.crt');
 
 // Tente ler os arquivos e registre se falhou
 let key, cert;
