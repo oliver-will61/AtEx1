@@ -1,5 +1,7 @@
+/*
+
 // Database config ============================================================
-import mysql from 'mysql2/promise';  // Importa a biblioteca mysql2, permitindo o uso de promessas com o MySQL
+import mysql from 'mysql2/promise';  
 
 
 const userdb = process.env.userdb
