@@ -1,18 +1,18 @@
 //libs ========================================================================
 
-import https from 'https'
-import fs from 'fs';
-import express from 'express';
-import mysql from 'mysql2/promise'; // Importa a biblioteca mysql2, permitindo o uso de promessas com o MySQL
-import path from 'path'  // Necessário para manipular caminhos de diretórios
+import https from 'https' // biblioteca para criar servidores HTTPS
+import fs from 'fs'; //biblioteca para manipulação de arquivos
+import express from 'express'; // framework para criação de servidores web
+import mysql from 'mysql2/promise'; // bibliotecas MySQL com suporte a promessas
+import path from 'path'  // biblioteca para manipular caminhos de arquivos e diretorios 
 import {fileURLToPath} from 'url' // Para converter URL em caminho de arquivo
-import cors from 'cors';
+import cors from 'cors'; // bliblioteca para configurar políticas de CORS (Cross-Origin Resesource Sharing)
 
 // Rotas =======================================================================
 
-import cadastroRouter from './routes/cadastro-rota.js'
+import cadastroRouter from './routes/cadastro-rota.js' // importa o roteador de rotas de cadastro
 
-//path =====================================================================
+// Caminho do arquivo e diretório =====================================================================
 
 // 1. Obtém a URL do módulo atual (o script que está sendo executado)
 const __filename = fileURLToPath(import.meta.url);
@@ -24,13 +24,13 @@ console.log(__dirname);  // Exibe o diretório atual onde o arquivo está locali
 
 // Banco de dados Config =====================================================
 
-const userdb = process.env.userdb
-const passwdb = process.env.passwdb
-const database = process.env.database
+const userdb = process.env.userdb // Usuário do banco de dados, definido nas variáveis de ambiente
+const passwdb = process.env.passwdb // senha do banco de dados, definido nas variáveis de ambiente
+const database = process.env.database // nome do banco de dados, definido nas variáveis de ambiente
 const portDB = 3306 // Porta padrão do MySQL
-const host = process.env.host
+const host = process.env.host // host do banco de dados, definido nas variáveis de ambiente
 
-// função para iniciar o banco
+// função para iniciar a conexão com o banco de dados
 async function initDatabase(){
     try{
         const connection = await mysql.createConnection({
@@ -42,11 +42,11 @@ async function initDatabase(){
         });
     
         console.log('Conexão com o banco de dados estabelecida com sucesso!'); // Confirma a conexão bem-sucedida
-        return connection;
+        return connection; // retorna a conexão estabelecida
         
     } catch (error) {
         console.error("Erro ao inicializar o banco de dados: ", error.message); // Captura e exibe erros na inicialização da conexão
-        throw error; // lança o erro para ser tratado em outro lugar, caso necessário
+        throw error; // lança o erro para ser tratado onde necessário
     }
 }
 
@@ -55,12 +55,11 @@ async function initDatabase(){
 const keyPath = path.join(__dirname, '../../ssl/keys/c3346_c4321_5cd879379917dde79c79f4d61a8e766f.key');
 const certPath = path.join(__dirname, '../../ssl/certs/certificado_completo.crt');
 
-// Tente ler os arquivos e registre se falhou
-let key, cert;
+let key, cert;  // variáveis para ar,azemar a chave e o certificado
 
 
 try {
-    key = fs.readFileSync(keyPath);
+    key = fs.readFileSync(keyPath); // lê o arquivo da chave privada
     console.log('Chave privada carregada com sucesso');
 } catch (error){
      console.error('Erro ao carregar chave privada:', error.message);
@@ -68,7 +67,7 @@ try {
 
 
 try {
-    cert = fs.readFileSync(certPath);
+    cert = fs.readFileSync(certPath); // lê o arquivo do certificado SSL
     console.log('Certificado carregada com sucesso');
 } catch (error){
      console.error('Erro ao carregar o certificado:', error.message);
@@ -80,37 +79,37 @@ const certificadoAndKey = {
      cert: cert
 }
 
-// Server ======================================================================
+// configuração do servidor ======================================================================
 
 async function startServe(){
     try{
-        const app = express();
-        const port = process.env.PORT || 58873 // porta do servidor
+        const app = express(); // cria uma nova aplicação express
+        const port = process.env.PORT || 58873 // define a porta do servidor, usando uma variável de ambiente ou valor padrão 
         
-        app.use(express.json()); //permite que o servidor interprete JSON no corpo da requisição
+        app.use(express.json()); //habbilita o suporte a JSON no corpo das requisições
         
         app.use(cors({
             origin: '*', // ou 'https://*' para permitir todos os domínios
-            methods: ['GET', 'POST', 'PUT', 'DELETE'],
-            allowedHeaders: ['Content-type', 'Authorization'],
+            methods: ['GET', 'POST', 'PUT', 'DELETE'], // métodos HTPP permitidos
+            allowedHeaders: ['Content-type', 'Authorization'], // cabeçalhos permitidos
             preflightContinue: false,
             optionsSuccessStatus: 204
         }));
         
-        app.options('*', cors()); // Permite todas as requisições OPTIONS
+        app.options('*', cors()); // Permite a requisições OPTIONS para todas as rotas
         
-        app.set('trust proxy', true); // Permite que o Express saiba que está atrás de um proxy
+        app.set('trust proxy', true); // Configura o Express para reconhecer proxies
         
         
         // Configuração do Diretório Público ==========================================
     
         // define o diretório público onde está o 'index.html'
-        const publicDir = path.join(__dirname,'../../public_html') // Diretório onde está o 'index.html'
-        app.use(express.static(publicDir)); // Serve arquivos estáticos a partir do diretório definido
+        const publicDir = path.join(__dirname,'../../public_html') // Caminho para o diretório público
+        app.use(express.static(publicDir)); // Serve arquivos estáticos do diretórios público 
     
         //Rotas ====================================================================
     
-        //Rota principal (carrega a página index.html)
+        // Define a rota principal que serve o arquivo index.html
         app.get('/', (req, res) => {
             try {
                 res.sendFile(path.join(publicDir, 'index.html')); // Envia o arquivo `index.html`
@@ -121,12 +120,13 @@ async function startServe(){
          
         });
         
-        const connection = await initDatabase();// Certifique-se de que a conexão foi estabelecida antes de iniciar o servidor
+        const connection = await initDatabase();// estabelece a conexão com o banco de dados
 
-        //rota para lidar com cadastro (usa o roteador, conecta ao banco de dados)
+        // configura o roteador de cadastro, passando a conexão do banco
         console.log('Carregando roteador de cadastro...');
         app.use('/', cadastroRouter(connection))// Passando a conexão para o roteador
         
+        //cria o servidor HTTPS e inicia-o
         https.createServer(certificadoAndKey, app).listen(port, ()=>{
             console.log(`Servidor HTTPS rodando na porta ${port}`)
         });
@@ -139,8 +139,5 @@ async function startServe(){
 
 // chama a função para iniciar o servidor
 startServe(); 
-
-//==========================================================================
-
 
 
