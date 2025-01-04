@@ -113,7 +113,9 @@
             // a função fetch gera uma promise e o método then() é usado para processar a resposta da requisição
             .then(response => response.text()) // Converte a resposta do servidor para texto
             .then(data => {  // Depois que a resposta é convertida em texto, ela é processada
-                console.log('Resposta do servidor:', data); // Exibe a resposta do servidor no console
+                alert('Resposta do servidor:', data);
+                window.location.replace('login.html');
+
             })
             .catch(erro => { // Caso ocorra algum erro durante o processo (como falha de conexão), captura o erro
                 console.error('Erro ao enviar dados para o servidor:', erro); // Exibe uma mensagem de erro no console

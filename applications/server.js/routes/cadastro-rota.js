@@ -25,7 +25,7 @@ export default function cadastroRoute(connection){
     
             console.log('Dados inseridos com sucesso no banco de dados', resultado.insertId);
     
-            res.send('Dados inseridos com sucesso!') // Responde ao cliente indicando sucesso
+            res.send('Cadastro realizado com sucesso!') // Responde ao cliente indicando sucesso
         }catch (error) {
             console.error('ERRO AO ISERIR DADOS', error);  // Caso ocorra um erro, loga o erro e responde ao cliente com um erro 500
             res.status(500).send('ERRO AO INSERIR DADOS NO BANCO DE DADOS');
