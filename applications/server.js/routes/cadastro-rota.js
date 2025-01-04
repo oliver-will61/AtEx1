@@ -1,4 +1,5 @@
 import express from 'express'; // importa o framework Express para criar e gerenciar rotas
+import bcrypt from 'bycrypt' //biblioteca responsável por criptografar as senhas
 
 // Cria uma nova instância do roteador do Express para definir rotas específicas
 const router = express.Router(); 
@@ -11,7 +12,7 @@ export default function cadastroRoute(connection){
     
         // obtém os dados do corpo da requisição (JSON enviado pelo cliente)
         const emailReq = req.body.email.toUpperCase(); // Converte o email para letras maiúsculos para padronização
-        const senhaReq = req.body.senha; // obtém a senha enviada pelo cliente
+        const senhaReq = await bcrypt.hash(req.body.senha, 10) ; // obtém a senha enviada pelo cliente e gera a criptografia
         const nomeReq = req.body.nome; // obtém o nome enviada pelo cliente
         const sobrenomeReq = req.body.sobrenome; // obtém o sobrenome enviado pelo cliente
     
