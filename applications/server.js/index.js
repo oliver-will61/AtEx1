@@ -14,41 +14,10 @@ import cadastroRouter from './routes/cadastro-rota.js' // importa o roteador de 
 
 // Caminho do arquivo e diretório =====================================================================
 
-// 1. Obtém a URL do módulo atual (o script que está sendo executado)
-const __filename = fileURLToPath(import.meta.url);
-
-// 2. Converte a URL para o caminho local (o diretório onde o arquivo está)
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url); // 1. Obtém a URL do módulo atual (o script que está sendo executado)
+const __dirname = path.dirname(__filename); // 2. Converte a URL para o caminho local (o diretório onde o arquivo está)
 console.log(__dirname);  // Exibe o diretório atual onde o arquivo está localizado
 
-
-// Banco de dados Config =====================================================
-
-const userdb = process.env.userdb // Usuário do banco de dados, definido nas variáveis de ambiente
-const passwdb = process.env.passwdb // senha do banco de dados, definido nas variáveis de ambiente
-const database = process.env.database // nome do banco de dados, definido nas variáveis de ambiente
-const portDB = 3306 // Porta padrão do MySQL
-const host = process.env.host // host do banco de dados, definido nas variáveis de ambiente
-
-// função para iniciar a conexão com o banco de dados
-async function initDatabase(){
-    try{
-        const connection = await mysql.createConnection({
-            host: host,
-            user: userdb,
-            database: database,
-            password: passwdb,
-            port: portDB
-        });
-    
-        console.log('Conexão com o banco de dados estabelecida com sucesso!'); // Confirma a conexão bem-sucedida
-        return connection; // retorna a conexão estabelecida
-        
-    } catch (error) {
-        console.error("Erro ao inicializar o banco de dados: ", error.message); // Captura e exibe erros na inicialização da conexão
-        throw error; // lança o erro para ser tratado onde necessário
-    }
-}
 
 // Configuração do HTTPS (Certificado SSL) ==================================
 
@@ -79,6 +48,34 @@ const certificadoAndKey = {
      cert: cert
 }
 
+// configuração do banco de dados =====================================================
+
+const userdb = process.env.userdb // Usuário do banco de dados, definido nas variáveis de ambiente
+const passwdb = process.env.passwdb // senha do banco de dados, definido nas variáveis de ambiente
+const database = process.env.database // nome do banco de dados, definido nas variáveis de ambiente
+const portDB = 3306 // Porta padrão do MySQL
+const host = process.env.host // host do banco de dados, definido nas variáveis de ambiente
+
+// função para iniciar a conexão com o banco de dados
+async function initDatabase(){
+    try{
+        const connection = await mysql.createConnection({
+            host: host,
+            user: userdb,
+            database: database,
+            password: passwdb,
+            port: portDB
+        });
+    
+        console.log('Conexão com o banco de dados estabelecida com sucesso!'); // Confirma a conexão bem-sucedida
+        return connection; // retorna a conexão estabelecida
+        
+    } catch (error) {
+        console.error("Erro ao inicializar o banco de dados: ", error.message); // Captura e exibe erros na inicialização da conexão
+        throw error; // lança o erro para ser tratado onde necessário
+    }
+}
+
 // configuração do servidor ======================================================================
 
 async function startServe(){
@@ -106,9 +103,7 @@ async function startServe(){
         // define o diretório público onde está o 'index.html'
         const publicDir = path.join(__dirname,'../../public_html') // Caminho para o diretório público
         app.use(express.static(publicDir)); // Serve arquivos estáticos do diretórios público 
-    
-        //Rotas ====================================================================
-    
+        
         // Define a rota principal que serve o arquivo index.html
         app.get('/', (req, res) => {
             try {
