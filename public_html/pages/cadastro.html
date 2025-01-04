@@ -113,7 +113,7 @@
             // a função fetch gera uma promise e o método then() é usado para processar a resposta da requisição
             .then(response => response.text()) // Converte a resposta do servidor para texto
             .then(data => {  // Depois que a resposta é convertida em texto, ela é processada
-                alert('Resposta do servidor:', data);
+                alert(data); // mostra a mensagem de sucesso de cadastro
                 window.location.replace('login.html');
 
             })
