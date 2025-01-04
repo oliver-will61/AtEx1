@@ -75,7 +75,7 @@ try {
 }
 
 
-const options = {
+const certificadoAndKey = {
      key: key,
      cert: cert
 }
@@ -89,7 +89,15 @@ async function startServe(){
         
         app.use(express.json()); //permite que o servidor interprete JSON no corpo da requisição
         
-        app.use(cors()); // Permite o compartilhamento de recursos entre diferentes origens
+        app.use(cors({
+            origin: '*', // ou 'https://*' para permitir todos os domínios
+            methods: ['GET', 'POST', 'PUT', 'DELETE'],
+            allowedHeaders: ['Content-type', 'Authorization'],
+            preflightContinue: false,
+            optionsSuccessStatus: 204
+        }));
+        
+        app.options('*', cors()); // Permite todas as requisições OPTIONS
         
         app.set('trust proxy', true); // Permite que o Express saiba que está atrás de um proxy
         
@@ -119,7 +127,7 @@ async function startServe(){
         console.log('Carregando roteador de cadastro...');
         app.use('/', cadastroRouter(connection))// Passando a conexão para o roteador
         
-        https.createServer(options, app).listen(port, ()=>{
+        https.createServer(certificadoAndKey, app).listen(port, ()=>{
             console.log(`Servidor HTTPS rodando na porta ${port}`)
         });
     } catch (error){
