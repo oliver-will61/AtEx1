@@ -1,5 +1,5 @@
 import express from 'express'; // importa o framework Express para criar e gerenciar rotas
-import bcrypt from 'bycrypt' //biblioteca responsável por criptografar as senhas
+import bcrypt from 'bcrypt';  //biblioteca responsável por criptografar as senhas
 
 // Cria uma nova instância do roteador do Express para definir rotas específicas
 const router = express.Router(); 

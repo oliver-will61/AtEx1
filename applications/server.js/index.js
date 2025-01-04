@@ -7,6 +7,7 @@ import mysql from 'mysql2/promise'; // bibliotecas MySQL com suporte a promessas
 import path from 'path'  // biblioteca para manipular caminhos de arquivos e diretorios 
 import {fileURLToPath} from 'url' // Para converter URL em caminho de arquivo
 import cors from 'cors'; // bliblioteca para configurar políticas de CORS (Cross-Origin Resesource Sharing)
+import bcrypt from 'bcrypt';  //biblioteca responsável por criptografar as senhas
 
 // Rotas =======================================================================
 
