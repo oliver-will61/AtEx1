@@ -14,6 +14,7 @@ import {connectionPromise} from './config/db.js'
 // Rotas =======================================================================
 
 import cadastroRouter from './routes/cadastro-rota.js' // importa o roteador de rotas de cadastro
+import loginRouter from './routes/login-rota.js'
 
 // Caminho do arquivo e diretório =====================================================================
 
@@ -92,8 +93,13 @@ async function startServe(){
         
         const connection = await connectionPromise;// // Obtem a conexão com o banco
         // configura o roteador de cadastro, passando a conexão do banco
-        console.log('Carregando roteador de cadastro...');
+
+
+
+        // Registra as rotas ==============================================================
+
         app.use('/', cadastroRouter(connection))// Passando a conexão para o roteador
+        app.use('/', loginRouter);
         
         //cria o servidor HTTPS e inicia-o
         https.createServer(certificadoAndKey, app).listen(port, ()=>{

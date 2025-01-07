@@ -50,8 +50,21 @@
                 senha: senhaLogin.value
             }
 
-            console.log(usuarioLogin)
-
+            // Envia uma solicitação POST para o servidor
+            fetch('https://willi4776.c44.integrator.host:58873/login', {
+                method: 'POST', // Método da solicitação
+                headers: {
+                    'Content-type': 'aplication/json' // Tipo de conteúdo sendo enviado (JSON)
+                },
+                body: JSON.stringify(usuarioLogin) // Converte o objeto em uma string JSON
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Erro ao enviar dados para o servidor', erro);
+            })
         })
 
 
