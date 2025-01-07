@@ -9,6 +9,8 @@ import {fileURLToPath} from 'url' // Para converter URL em caminho de arquivo
 import cors from 'cors'; // bliblioteca para configurar políticas de CORS (Cross-Origin Resesource Sharing)
 import bcrypt from 'bcrypt';  //biblioteca responsável por criptografar as senhas
 
+import {connectionPromise} from './config/db.js'
+
 // Rotas =======================================================================
 
 import cadastroRouter from './routes/cadastro-rota.js' // importa o roteador de rotas de cadastro
@@ -47,34 +49,6 @@ try {
 const certificadoAndKey = {
      key: key,
      cert: cert
-}
-
-// configuração do banco de dados =====================================================
-
-const userdb = process.env.userdb // Usuário do banco de dados, definido nas variáveis de ambiente
-const passwdb = process.env.passwdb // senha do banco de dados, definido nas variáveis de ambiente
-const database = process.env.database // nome do banco de dados, definido nas variáveis de ambiente
-const portDB = 3306 // Porta padrão do MySQL
-const host = process.env.host // host do banco de dados, definido nas variáveis de ambiente
-
-// função para iniciar a conexão com o banco de dados
-async function initDatabase(){
-    try{
-        const connection = await mysql.createConnection({
-            host: host,
-            user: userdb,
-            database: database,
-            password: passwdb,
-            port: portDB
-        });
-    
-        console.log('Conexão com o banco de dados estabelecida com sucesso!'); // Confirma a conexão bem-sucedida
-        return connection; // retorna a conexão estabelecida
-        
-    } catch (error) {
-        console.error("Erro ao inicializar o banco de dados: ", error.message); // Captura e exibe erros na inicialização da conexão
-        throw error; // lança o erro para ser tratado onde necessário
-    }
 }
 
 // configuração do servidor ======================================================================
@@ -116,8 +90,7 @@ async function startServe(){
          
         });
         
-        const connection = await initDatabase();// estabelece a conexão com o banco de dados
-
+        const connection = await connectionPromise;// // Obtem a conexão com o banco
         // configura o roteador de cadastro, passando a conexão do banco
         console.log('Carregando roteador de cadastro...');
         app.use('/', cadastroRouter(connection))// Passando a conexão para o roteador
