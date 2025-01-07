@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import {connetionPromise} from '../config/db';
+import {connectionPromise} from '../config/db.js';
 
 const app = express();
 app.use(express.json()) // Middleware para analisar JSON
@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
     const senhaLogin = req.body.senha
 
     try {
-        const connetion = await connetionPromise  // Obtem a conexão com o banco
+        const connetion = await connectionPromise  // Obtem a conexão com o banco
 
         //Executa uma consulta SQL para selecionar o email e a senha da tabela 'usuarios'
         const [rows] = await connetion.execute('SELECT email, senha FROM usuarios WHERE email = ?', [emailLogin])
