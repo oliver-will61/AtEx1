@@ -60,15 +60,19 @@
             })
             .then(response => response.json()) // Converte a resposta para JSON 
             .then(data => {
-                if(data.success) {
-                    alert('Login bem-sucedido');
+                
+                console.log(data)
+                if(data.success == true) {
+                    window.location.href = '../index.html';
+                    console.log('teste verdadeiro');
                 } else {
                     alert(data.message);  // Exibe a mensagem de erro enviada pelo backend
+                    console.log('teste')
                 }
                 
             })
             .catch(error => {
-                console.error('Erro ao enviar dados para o servidor', erro);
+                console.error('Erro ao enviar dados para o servidor', error);
             })
         })
 

@@ -30,15 +30,15 @@ router.post('/login', async (req, res) => {
 
         if(!senhaValida) {
             // se a senha estiver errada ou seja diferente de vardadeiro
-            return res.status(401).json({sucess: false, message: 'Senha incorreta'})
+            return res.status(401).json({success: false, message: 'Senha incorreta'})
         }
 
         // se o login for bem-sucedido 
-        res.json({sucess: true, message: 'Login bem-sucedido'})
+        return res.status(200).json({success: true, message: 'Login bem-sucedido'})
 
     } catch (error) {
         console.error('Erro ao processar o login', error);
-        res.status(500).json({sucess: false, menssage: 'Erro interno ao servidor'})
+        res.status(500).json({success: false, message: 'Erro interno ao servidor'})
     }
 
 })
