@@ -58,9 +58,14 @@
                 },
                 body: JSON.stringify(usuarioLogin) // Converte o objeto em uma string JSON
             })
-            .then(response => response.text())
+            .then(response => response.json()) // Converte a resposta para JSON 
             .then(data => {
-                console.log(data);
+                if(data.success) {
+                    alert('Login bem-sucedido');
+                } else {
+                    alert(data.message);  // Exibe a mensagem de erro enviada pelo backend
+                }
+                
             })
             .catch(error => {
                 console.error('Erro ao enviar dados para o servidor', erro);

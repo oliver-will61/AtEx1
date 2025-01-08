@@ -48,7 +48,7 @@ const host = process.env.host // host do banco de dados, definido nas variáveis
 // função para iniciar a conexão com o banco de dados
 async function initDatabase(){
     try{
-        const connection = await mysql.createConnection({
+        const connection = await mysql.createPool({
             host: host,
             user: userdb,
             database: database,
