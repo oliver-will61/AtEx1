@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtEx1</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+    <header>
+        <img src="../assets/loveFoodIcone.png" class="logo-icone">
+        <h1 class="titulo-header">Adicionar Ponto de doação</h1>
+    </header>
+
+    <main class="container-cadastro">
+
+        <div class="formualario-cadastro">
+
+            <form class="container-formulario-cadastro">
+
+                <label for="produto-input">Nome do Produto
+                    <input  id="produto-input" class="formulario-cadastro-entrada" type="text" name=nome >
+                </label>
+        
+                <label for="descricao-input">Descrição do produto
+                    <textarea id="descricao-input" class="formulario-cadastro-entrada"></textarea>
+                </label>
+
+                <label for="imagem-input">Imagem do produto
+                    <input  id="imagem-input" class="formulario-cadastro-entrada" type="file" name=nome >
+                </label>
+
+                <label for="cep-input" class="cadastro-rotulo">CEP
+                    <input id="cep-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                </label>
+
+                <label for="cidade-input" class="cadastro-rotulo">Cidade
+                    <input id="cidade-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                </label>
+
+                <label for="bairro-input" class="cadastro-rotulo">Bairro
+                    <input id="bairro-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                </label>
+
+                <label for="rua-input" class="cadastro-rotulo">Rua
+                    <input id="rua-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                </label>
+
+                <label for="numero-input" class="cadastro-rotulo">Número
+                    <input id="numero-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                </label>
+
+            </div>
+            
+
+            <button class="botao" id = 'btn' type="button">Enviar</button>
+   
+        </form>
+    </main>
+
+    <script>
+         const btn = document.getElementById('btn')
+
+         btn.addEventListener('click', () => {
+
+            const produtoInput =  document.getElementById('produto-input');
+            const descricaoInput = document.getElementById('descricao-input');
+            const cepInput = document.getElementById('cep-input');
+            const cidadeInput = document.getElementById('cidade-input');
+            const bairroInput = document.getElementById('bairro-input');
+            const ruaInput = document.getElementById('rua-input');
+            const numeroInput = document.getElementById('numero-input');
+
+            const pontoDoacao = {
+                produto: produtoInput.value,
+                descricao: descricaoInput.value,
+                cep: cepInput.value,
+                cidade: cidadeInput.value,
+                bairro: bairroInput.value,
+                rua: ruaInput.value,
+                numero: numeroInput.value
+            }
+
+            console.log(pontoDoacao);
+
+            fetch('https://willi4776.c44.integrator.host:58873/AddPontoDoacao', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(pontoDoacao) // Converte o objeto em uma string JSON
+            })
+            .then(response => response.json()) // Converte a resposta para JSON 
+            .then(data => {
+                console.log(data.message);
+            })
+            .catch(error => {
+                console.error('Erro ao enviar dados para o seervidor', error);
+            })
+         })
+
+    </script>
+
+
+</body>
+</html>
