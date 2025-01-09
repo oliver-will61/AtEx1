@@ -71,8 +71,15 @@
             const bairroInput = document.getElementById('bairro-input');
             const ruaInput = document.getElementById('rua-input');
             const numeroInput = document.getElementById('numero-input');
-
+            
+            
+            // pucha o id do usuario logado
+            
+            const usuarioIUnfo = JSON.parse(sessionStorage.getItem('usuarioInfo')) // pega as informações salvados do usuario logado
+            
+            
             const pontoDoacao = {
+                usuarioId: usuarioIUnfo.id,
                 produto: produtoInput.value,
                 descricao: descricaoInput.value,
                 cep: cepInput.value,
