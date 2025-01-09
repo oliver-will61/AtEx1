@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
         const connetion = await connectionPromise  // Obtem a conexão com o banco
 
         //Executa uma consulta SQL para selecionar o email e a senha da tabela 'usuarios'
-        const [rows] = await connetion.execute('SELECT email, senha FROM usuarios WHERE email = ?', [emailLogin])
+        const [rows] = await connetion.execute('SELECT email, senha, id, nome FROM usuarios WHERE email = ?', [emailLogin])
 
         if (rows.length === 0){
             //email não encontrado no banco, o que significa que não foi cadastrado
@@ -34,7 +34,17 @@ router.post('/login', async (req, res) => {
         }
 
         // se o login for bem-sucedido 
-        return res.status(200).json({success: true, message: 'Login bem-sucedido'})
+        return res.status(200).json({
+            success: true, 
+            message: 'Login bem-sucedido',
+            userInfo: {
+                id: usuario.id,
+                email: usuario.email,
+                nome: usuario.nome
+            }
+        })
+        
+        
 
     } catch (error) {
         console.error('Erro ao processar o login', error);
