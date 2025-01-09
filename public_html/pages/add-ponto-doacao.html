@@ -19,17 +19,16 @@
 
             <form class="container-formulario-cadastro">
 
-                <label for="produto-input">Produto
+                <label for="produto-input">Nome do Produto
                     <input  id="produto-input" class="formulario-cadastro-entrada" type="text" name=nome >
                 </label>
         
-                <label for="descricao-produto">Descrição do produto
-                    <textarea id="descricao-produto" class="formulario-cadastro-entrada"></textarea>
+                <label for="descricao-input">Descrição do produto
+                    <textarea id="descricao-input" class="formulario-cadastro-entrada"></textarea>
                 </label>
 
-
-                <label for="cidade-input" class="cadastro-rotulo">Email
-                    <input id="cidade-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                <label for="imagem-input">Imagem do produto
+                    <input  id="imagem-input" class="formulario-cadastro-entrada" type="file" name=nome >
                 </label>
 
                 <label for="cep-input" class="cadastro-rotulo">CEP
@@ -55,12 +54,51 @@
             </div>
             
 
-            <button class="botao" type="button">Enviar</button>
+            <button class="botao" id = 'btn' type="button">Enviar</button>
    
         </form>
     </main>
 
     <script>
+         const btn = document.getElementById('btn')
+
+         btn.addEventListener('click', () => {
+
+            const produtoInput =  document.getElementById('produto-input');
+            const descricaoInput = document.getElementById('descricao-input');
+            const cepInput = document.getElementById('cep-input');
+            const cidadeInput = document.getElementById('cidade-input');
+            const bairroInput = document.getElementById('bairro-input');
+            const ruaInput = document.getElementById('rua-input');
+            const numeroInput = document.getElementById('numero-input');
+
+            const pontoDoacao = {
+                produto: produtoInput.value,
+                descricao: descricaoInput.value,
+                cep: cepInput.value,
+                cidade: cidadeInput.value,
+                bairro: bairroInput.value,
+                rua: ruaInput.value,
+                numero: numeroInput.value
+            }
+
+            console.log(pontoDoacao);
+
+            fetch('https://willi4776.c44.integrator.host:58873/AddPontoDoacao', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(pontoDoacao) // Converte o objeto em uma string JSON
+            })
+            .then(response => response.json()) // Converte a resposta para JSON 
+            .then(data => {
+                console.log(data.message);
+            })
+            .catch(error => {
+                console.error('Erro ao enviar dados para o seervidor', error);
+            })
+         })
 
     </script>
 
