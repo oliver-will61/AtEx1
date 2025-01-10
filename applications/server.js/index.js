@@ -15,6 +15,7 @@ import {connectionPromise} from './config/db.js'
 
 import cadastroRouter from './routes/cadastro-rota.js' // importa o roteador de rotas de cadastro
 import loginRouter from './routes/login-rota.js'
+import addPontoDoacaoRota from './routes/add-ponto-doacao-rota.js'
 
 // Caminho do arquivo e diretório =====================================================================
 
@@ -100,6 +101,7 @@ async function startServe(){
 
         app.use('/', cadastroRouter(connection))// Passando a conexão para o roteador
         app.use('/', loginRouter);
+        app.use('/', addPontoDoacaoRota);
         
         //cria o servidor HTTPS e inicia-o
         https.createServer(certificadoAndKey, app).listen(port, ()=>{

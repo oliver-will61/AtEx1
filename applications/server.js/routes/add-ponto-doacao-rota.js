@@ -1,5 +1,5 @@
 import express from 'express';
-import { connectionPromise } from '../config/db';
+import { connectionPromise } from '../config/db.js';
 
 const app = express();
 app.use(express.json())
@@ -15,17 +15,17 @@ router.post('/AddPontoDoacao', async (req, res) => {
     const cidadeReq = req.body.cidade;
     const  bairroReq = req.body.bairro
     const ruaReq = req.body.rua
-    const numeroReq = req.body
+    const numeroReq = req.body.numero
     
     try{
         const connetion = await connectionPromise  // Obtem a conexão com o banco
-        await connetion.execute('INSERT INTO  pontos_de_doacao (idUsuario, produto, descricaoProduto, cep, cidade, bairro, rua, numero, cep) VALUES (?,?,?,?,?,?,?,?)', 
+        await connetion.execute('INSERT INTO  pontos_de_doacao (idUsuario, produto, descricaoProduto, cep, cidade, bairro, rua, numero) VALUES (?,?,?,?,?,?,?,?)', 
             [usuarioIdReq, produtoReq, descricaoReq, cepReq, cidadeReq, bairroReq, ruaReq, numeroReq]
         ); 
 
         console.log('Dados inseridos com sucesso no banco de dados');
 
-        res.send('Dados inseridos com sucesso no banco de dados')  
+        res.json({ success: true, message:'Dados inseridos com sucesso no banco de dados'})  
 
     } catch (error) {
         console.error('ERRO AO INSERIR DADOS', error); // Caso ocorra um erro, loga o erro e responde ao cliente com um erro 500
