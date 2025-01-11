@@ -59,9 +59,12 @@
 
         const conteudoPrincipal = document.querySelector(".conteudo-principal");
         let dadosDoadores;
+        let pontosDoacoes;
 
         //carregaPaginaPrincipal();
         
+
+
         main();
 
 
@@ -71,7 +74,8 @@
             })
             .then(response => response.json()) // Converte o objeto em uma string JSON
             .then(data => {
-                console.log(data);
+                pontosDoacoes =  data
+                return pontosDoacoes
             })
             .catch(error => {
                 console.error('Erro ao enviar dados para o servidor', error);
@@ -81,6 +85,8 @@
         async function main(){
             try {
                 await puxaPontoDoacao()
+                console.log(pontosDoacoes);
+                
                 await carregaJSON()
 
                 //resto do código sera feito aqui
