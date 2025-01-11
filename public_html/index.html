@@ -55,6 +55,8 @@
 
     <script >
 
+        
+
         const conteudoPrincipal = document.querySelector(".conteudo-principal");
         let dadosDoadores;
 
@@ -62,15 +64,16 @@
 
         main();
 
-        async function carregaJSON(){
-            try {
-                const response = await fetch("dados_doador.json") //carrega o arquivo JSON
-                dadosDoadores = await response.json(); //lista dos objetos, convetidos para javascript
-                return dadosDoadores
 
-            } catch(erro) {
-                console.log("Erro ao carregar o arquivo JSON!", erro);
-            }
+        function puxaPontoDoacao(){
+            fetch('https://willi4776.c44.integrator.host:58873/puxaPontosDoacoes')
+            .then(response => response.json()) // Converte o objeto em uma string JSON
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Erro ao enviar dados para o servidor', error);
+            })
         }
 
         async function main(){
@@ -84,6 +87,18 @@
 
             } catch (erro) {
                 console.error("Ocorreu um erro", erro)
+            }
+        }
+
+
+        async function carregaJSON(){
+            try {
+                const response = await fetch("dados_doador.json") //carrega o arquivo JSON
+                dadosDoadores = await response.json(); //lista dos objetos, convetidos para javascript
+                return dadosDoadores
+
+            } catch(erro) {
+                console.log("Erro ao carregar o arquivo JSON!", erro);
             }
         }
 

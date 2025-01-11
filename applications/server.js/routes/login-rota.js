@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
         return res.status(200).json({
             success: true, 
             message: 'Login bem-sucedido',
-            userInfo: {
+            userInfo: { // coleta informações de login do usaurio 
                 id: usuario.id,
                 email: usuario.email,
                 nome: usuario.nome
