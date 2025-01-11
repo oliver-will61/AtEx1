@@ -103,7 +103,7 @@ async function startServe(){
         app.use('/', cadastroRouter(connection))// Passando a conexão para o roteador
         app.use('/', loginRouter);
         app.use('/', addPontoDoacaoRota);
-        app.use('/puxaPontosDoacoes', puxaPontoDoacao);
+        app.use('/', puxaPontoDoacao);
         
         //cria o servidor HTTPS e inicia-o
         https.createServer(certificadoAndKey, app).listen(port, ()=>{

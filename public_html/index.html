@@ -66,7 +66,9 @@
 
 
         async function puxaPontoDoacao(){
-            fetch('https://willi4776.c44.integrator.host:58873/puxaPontosDoacoes')
+            fetch('https://willi4776.c44.integrator.host:58873/puxaPontosDoacoes', {
+                method: 'POST',
+            })
             .then(response => response.json()) // Converte o objeto em uma string JSON
             .then(data => {
                 console.log(data);
