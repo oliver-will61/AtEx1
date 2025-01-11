@@ -61,11 +61,11 @@
         let dadosDoadores;
 
         //carregaPaginaPrincipal();
-
+        
         main();
 
 
-        function puxaPontoDoacao(){
+        async function puxaPontoDoacao(){
             fetch('https://willi4776.c44.integrator.host:58873/puxaPontosDoacoes')
             .then(response => response.json()) // Converte o objeto em uma string JSON
             .then(data => {
@@ -78,6 +78,7 @@
 
         async function main(){
             try {
+                await puxaPontoDoacao()
                 await carregaJSON()
 
                 //resto do código sera feito aqui

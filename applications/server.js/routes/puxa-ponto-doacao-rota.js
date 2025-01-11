@@ -8,10 +8,9 @@ const router = express.Router()
 router.post('/puxaPontosDoacoes', async(req, res) => {
     console.log('Requisição recebida');
 
-
     try{
-        const connetion = await connectionPromise
-        const [rows] = await connetion.execute('SELECT * FROM pontos_de_doacao')
+        const connection = await connectionPromise
+        const [rows] = await connection.execute('SELECT * FROM pontos_de_doacao')
 
     
         return res.status(200).json({
@@ -28,3 +27,5 @@ router.post('/puxaPontosDoacoes', async(req, res) => {
         });
     }
 });
+
+export default router;
