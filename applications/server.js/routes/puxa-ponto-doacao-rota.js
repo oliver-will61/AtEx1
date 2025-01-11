@@ -10,7 +10,18 @@ router.post('/puxaPontosDoacoes', async(req, res) => {
 
     try{
         const connection = await connectionPromise
-        const [rows] = await connection.execute('SELECT * FROM pontos_de_doacao')
+        const [rows] = await connection.execute(`
+            SELECT 
+                pontos_de_doacao.*,
+                usuarios.nome,
+                usuarios.email
+            FROM 
+                pontos_de_doacao
+            INNER JOIN 
+            	usuarios
+        	ON 
+        	    pontos_de_doacao.idUsuario = usuarios.id;
+        	    `)
 
     
         return res.status(200).json({
