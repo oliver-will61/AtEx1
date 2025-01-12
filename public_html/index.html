@@ -58,7 +58,7 @@
         
 
         const conteudoPrincipal = document.querySelector(".conteudo-principal");
-        let dadosDoadores;
+        //let dadosDoadores;
         let pontosDoacoes;
 
         //carregaPaginaPrincipal();
@@ -69,25 +69,28 @@
 
 
         async function puxaPontoDoacao(){
-            fetch('https://willi4776.c44.integrator.host:58873/puxaPontosDoacoes', {
-                method: 'POST',
-            })
-            .then(response => response.json()) // Converte o objeto em uma string JSON
-            .then(data => {
-                pontosDoacoes =  data
-                return pontosDoacoes
-            })
-            .catch(error => {
+            try {
+                
+                const response = await fetch('https://willi4776.c44.integrator.host:58873/puxaPontosDoacoes', {
+                    method: 'POST',
+                 });
+                 
+                 const data = await response.json() // Aguarda a conversão para JSON
+                 pontosDoacoes = data // Atualiza pontosDoacoes com os dados recebidos
+                 return pontosDoacoes;
+                
+            } catch (error) {
                 console.error('Erro ao enviar dados para o servidor', error);
-            })
+            }
+            
         }
 
         async function main(){
             try {
                 await puxaPontoDoacao()
                 console.log(pontosDoacoes);
-                
-                await carregaJSON()
+            
+                //await carregaJSON()
 
                 //resto do código sera feito aqui
                 carregaTelaPrincipal()
@@ -99,7 +102,8 @@
             }
         }
 
-
+        
+        /*
         async function carregaJSON(){
             try {
                 const response = await fetch("dados_doador.json") //carrega o arquivo JSON
@@ -109,21 +113,21 @@
             } catch(erro) {
                 console.log("Erro ao carregar o arquivo JSON!", erro);
             }
-        }
+        } */
 
 
         function carregaTelaPrincipal(){
             //coloca todos os objeto na tela principal
             
-            dadosDoadores.forEach(element => {  
+            pontosDoacoes.data.forEach(element => {  
 
                 conteudoPrincipal.innerHTML += `        
                 <div class="container-doador">
                     <img class="imagem-doador"src="${element.img}">
 
                     <div class="infomarcoes-doador">
-                        <h3 class="nome-doador">${element.nomeDoador}</h3>
-                        <p class="localização-doador">${element.localização}</p>
+                        <h3 class="nome-doador">${element.nome}</h3>
+                        <p class="localização-doador">${element.produto}</p>
                     </div>
                 </div>`
             });
@@ -133,9 +137,11 @@
             //ao clicar em qualquer doador, ira iniciar a função "descricaoDoador"
 
             const doadores = document.querySelectorAll(".container-doador")
-
+            
             doadores.forEach((elemente) => elemente.addEventListener('click',  (event) => {
                 doadorSelecionado = event.currentTarget.querySelector(".nome-doador").textContent;
+                
+                console.log(doadorSelecionado)
 
                 descricaoDoador(doadorSelecionado) //carrega a tela do doador
             }))
@@ -145,7 +151,7 @@
         function descricaoDoador(doadorSelecionado){
             //deixa a tela principal em branco e escreve a descricao de cada doador
 
-            const objetoSelecionado = dadosDoadores.find(objeto => objeto.nomeDoador === doadorSelecionado)
+            const objetoSelecionado = pontosDoacoes.data.find(objeto => objeto.nome === doadorSelecionado)
             
             const logo = document.querySelector(".logo-icone")
             const tituloHeader = document.querySelector(".titulo-header")
@@ -172,13 +178,13 @@
 
 
                 <h2 class="subtitulo">Descrição</h2>
-                <p class="texto-doador">${objetoSelecionado.descricao}</p>
+                <p class="texto-doador">${objetoSelecionado.descricaoProduto}</p>
 
                 <h2 class="subtitulo">Endereço</h2>
 
                 <p class="texto-doador">
-                    ${objetoSelecionado.end.rua}, ${objetoSelecionado.end.numero}, ${objetoSelecionado.end.bairro},
-                    ${objetoSelecionado.end.cidade}, ${objetoSelecionado.end.estado}, ${objetoSelecionado.end.cep}
+                    ${objetoSelecionado.rua}, ${objetoSelecionado.numero}, ${objetoSelecionado.bairro},
+                    ${objetoSelecionado.cidade}, ${objetoSelecionado.cep}
                 </p>
 
                 <div class="container-mapa">
