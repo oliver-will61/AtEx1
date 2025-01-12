@@ -61,10 +61,17 @@
 
     <script>
 
-        if (!verificaSeUsuarioEstaLogado()) {
-            // se o usuario não logado, ou seja retornou false 
-            window.location.href = 'login.html'
-        }
+        fetch('/verifica-login', {
+            method: 'GET', 
+            credentials: 'include', // Envia os cookies automaticamente
+        })
+
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success){
+                window.location.href = 'login.html';
+            }
+        })
 
          const btn = document.getElementById('btn')
 
@@ -112,11 +119,6 @@
                 console.error('Erro ao enviar dados para o seervidor', error);
             })
          })
-
-         function verificaSeUsuarioEstaLogado() {
-            const token = document.cookie.split('; ').find(row => row.startsWith('auth_token'));
-            return token ? true : false //  Se o token estiver presente, o usuário está logado
-         }
 
     </script>
 
