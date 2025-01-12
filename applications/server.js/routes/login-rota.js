@@ -44,10 +44,11 @@ router.post('/login', async (req, res) => {
         const token = 'token_temporario' // Este seria o token JWT ou outro identificador, criptografar dps
 
         res.cookie('auth_token', token, { // Envia o token de autenticação como cookie
-                httpOnly: true, // Não acessível via JavaScript (mais seguro)
+                httpOnly: false, // Não acessível via JavaScript (mais seguro)
                 secure: process.env.NODE_ENV === 'production', //Garantir que só seja enviado via HTTPS em produção
                 maxAge: 3600000 // tempo de expiração em milissegundos (1 hora)
         });
+        
 
         return res.status(200).json({
             success: true, 

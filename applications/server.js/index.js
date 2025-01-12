@@ -9,6 +9,8 @@ import {fileURLToPath} from 'url' // Para converter URL em caminho de arquivo
 import cors from 'cors'; // bliblioteca para configurar políticas de CORS (Cross-Origin Resesource Sharing)
 import bcrypt from 'bcrypt';  //biblioteca responsável por criptografar as senhas
 
+import cookieParser from 'cookie-parser'
+
 import {connectionPromise} from './config/db.js'
 
 // Rotas =======================================================================
@@ -17,6 +19,7 @@ import cadastroRouter from './routes/cadastro-rota.js' // importa o roteador de 
 import loginRouter from './routes/login-rota.js'
 import addPontoDoacaoRota from './routes/add-ponto-doacao-rota.js';
 import puxaPontoDoacao from './routes/puxa-ponto-doacao-rota.js';
+import verificaLoginRota from './routes/verifica-usuario-logado.js';
 
 // Caminho do arquivo e diretório =====================================================================
 
@@ -64,12 +67,15 @@ async function startServe(){
         app.use(express.json()); //habbilita o suporte a JSON no corpo das requisições
         
         app.use(cors({
-            origin: '*', // ou 'https://*' para permitir todos os domínios
+            origin: 'https://willi4776.c44.integrator.host:58873', 
             methods: ['GET', 'POST', 'PUT', 'DELETE'], // métodos HTPP permitidos
             allowedHeaders: ['Content-type', 'Authorization'], // cabeçalhos permitidos
             preflightContinue: false,
-            optionsSuccessStatus: 204
+            optionsSuccessStatus: 204,
+            credentials: true
         }));
+        
+        app.use(cookieParser());
         
         app.options('*', cors()); // Permite a requisições OPTIONS para todas as rotas
         
@@ -104,6 +110,7 @@ async function startServe(){
         app.use('/', loginRouter);
         app.use('/', addPontoDoacaoRota);
         app.use('/', puxaPontoDoacao);
+        app.use('/', verificaLoginRota)
         
         //cria o servidor HTTPS e inicia-o
         https.createServer(certificadoAndKey, app).listen(port, ()=>{
