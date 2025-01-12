@@ -60,6 +60,12 @@
     </main>
 
     <script>
+
+        if (!verificaSeUsuarioEstaLogado()) {
+            // se o usuario não logado, ou seja retornou false 
+            window.location.href = 'login.html'
+        }
+
          const btn = document.getElementById('btn')
 
          btn.addEventListener('click', () => {
@@ -106,6 +112,11 @@
                 console.error('Erro ao enviar dados para o seervidor', error);
             })
          })
+
+         function verificaSeUsuarioEstaLogado() {
+            const token = document.cookie.split('; ').find(row => row.startsWith('auth_token'));
+            return token ? true : false //  Se o token estiver presente, o usuário está logado
+         }
 
     </script>
 
