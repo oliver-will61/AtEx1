@@ -69,6 +69,7 @@
         .then(response => response.json())
         .then(data => {
             if (!data.success){
+                alert('Para acessar a pagina é nessesário um login')
                 window.location.href = 'login.html';
             }
         })

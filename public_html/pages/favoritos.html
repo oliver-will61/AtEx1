@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <main>
+        <p>
+          Ainda em desenvolvimento!  
+        </p>
+    </main>
+    
+    <script>
+        fetch('https://willi4776.c44.integrator.host:58873/verifica-login', {
+            method: 'GET',
+            credentials: 'include', 
+        })
+        
+        .then(response => response.json())
+        .then(data => {
+            if(!data.success){
+                alert('Para acessar a pagina é nessesário um login')
+               window.location.href = 'login.html' 
+            }
+        })
+    </script>
+ 
+</body>
+</html>
