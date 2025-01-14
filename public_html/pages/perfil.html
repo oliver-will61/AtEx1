@@ -8,9 +8,11 @@
 </head>
 <body>
     <main>
-        <p>
-          Ainda em desenvolvimento!  
-        </p>
+        <p>Usuario ID: <span id='usuario-id'></span></p>
+        <p>Usuario: <span id='usuario-nome'></span></p></p>
+        <p>Email: <span id='usuario-email'></span></p>
+        
+        <button id='btn-logout'>Sair da Conta</button>
     </main>
     
     <script>
@@ -26,6 +28,37 @@
                 alert('Para acessar a pagina é nessesário um login')
                 window.location.href = 'login.html'   
             }
+        })
+        
+        const usuarioInfo = JSON.parse(sessionStorage.getItem('usuarioInfo'))
+        
+        const btnLogout = document.getElementById('btn-logout');
+        
+        const usuarioIdhtml = document.getElementById('usuario-id');
+        const usuarioNomeHtml = document.getElementById('usuario-nome');
+        const usuarioEmailHtml = document.getElementById('usuario-email');
+        
+        usuarioIdhtml.innerHTML = usuarioInfo.id
+        usuarioNomeHtml.innerHTML = usuarioInfo.nome
+        usuarioEmailHtml.innerHTML = usuarioInfo.email
+        
+        btnLogout.addEventListener('click', () => {
+            
+            
+            if(confirm('Deseja sair da conta?') == true) {
+                
+                //deleta o token de login
+                document.cookie = "auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";   
+                
+                //deleta os dados do usuario mantidos no sessionStorage
+                sessionStorage.removeItem('usuarioInfo');
+                
+                /* expires, define a data de expiração no passado, fazendo com que o cookie seja apagado, path=/ garante que o cookie será deletado em toda a aplicação (não apenas na página atual).*/
+            
+                document.location.href = '../index.html';            
+                
+            }
+            
         })
         
     </script>
