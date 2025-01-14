@@ -20,7 +20,7 @@
             <form class="container-formulario-cadastro">
 
                 <label for="produto-input">Nome do Produto
-                    <input  id="produto-input" class="formulario-cadastro-entrada" type="text" name=nome >
+                    <input  id="produto-input" class="formulario-cadastro-entrada" type="text">
                 </label>
         
                 <label for="descricao-input">Descrição do produto
@@ -28,7 +28,7 @@
                 </label>
 
                 <label for="imagem-input">Imagem do produto
-                    <input  id="imagem-input" class="formulario-cadastro-entrada" type="file" name=nome >
+                    <input  id="imagem-input" class="formulario-cadastro-entrada" type="file" name="imagem" >
                 </label>
 
                 <label for="cep-input" class="cadastro-rotulo">CEP
@@ -36,19 +36,19 @@
                 </label>
 
                 <label for="cidade-input" class="cadastro-rotulo">Cidade
-                    <input id="cidade-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                    <input id="cidade-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
                 </label>
 
                 <label for="bairro-input" class="cadastro-rotulo">Bairro
-                    <input id="bairro-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                    <input id="bairro-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
                 </label>
 
                 <label for="rua-input" class="cadastro-rotulo">Rua
-                    <input id="rua-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                    <input id="rua-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
                 </label>
 
                 <label for="numero-input" class="cadastro-rotulo">Número
-                    <input id="numero-input" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
+                    <input id="numero-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
                 </label>
 
             </div>
@@ -85,32 +85,35 @@
             const bairroInput = document.getElementById('bairro-input');
             const ruaInput = document.getElementById('rua-input');
             const numeroInput = document.getElementById('numero-input');
+            const imagemInput = document.getElementById('imagem-input');
             
             
             // pucha o id do usuario logado
-            
             const usuarioIUnfo = JSON.parse(sessionStorage.getItem('usuarioInfo')) // pega as informações salvados do usuario logado
             
             
-            const pontoDoacao = {
-                usuarioId: usuarioIUnfo.id,
-                produto: produtoInput.value,
-                descricao: descricaoInput.value,
-                cep: cepInput.value,
-                cidade: cidadeInput.value,
-                bairro: bairroInput.value,
-                rua: ruaInput.value,
-                numero: numeroInput.value
+            // cria um objeto FormData
+            
+            const formData = new FormData();
+            formData.append('usuarioId',usuarioIUnfo.id);
+            formData.append('produto',produtoInput.value);
+            formData.append('descricao',descricaoInput.value);
+            formData.append('cep',cepInput.value);
+            formData.append('cidade',cidadeInput.value);
+            formData.append('bairro',bairroInput.value);
+            formData.append('rua',ruaInput.value);
+            formData.append('numero',numeroInput.value);
+            
+            
+            // adiciona a imagem ao FormData
+            if(imagemInput.files.length > 0){
+                formData.append('imagem',imagemInput.files[0]);
             }
-
-            console.log(pontoDoacao);
-
+            
+        
             fetch('https://willi4776.c44.integrator.host:58873/AddPontoDoacao', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(pontoDoacao) // Converte o objeto em uma string JSON
+                body: formData 
             })
             .then(response => response.json()) // Converte a resposta para JSON 
             .then(data => {

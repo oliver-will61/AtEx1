@@ -11,16 +11,15 @@ export default function cadastroRoute(connection){
         console.log('Requisição recebida');  // Loga no console que a requisição foi recebida
     
         // obtém os dados do corpo da requisição (JSON enviado pelo cliente)
-        const emailReq = req.body.email.toUpperCase(); // Converte o email para letras maiúsculos para padronização
+        const emailReq = req.body.email
         const senhaReq = await bcrypt.hash(req.body.senha, 10) ; // obtém a senha enviada pelo cliente e gera a criptografia
         const nomeReq = req.body.nome; // obtém o nome enviada pelo cliente
-        const sobrenomeReq = req.body.sobrenome; // obtém o sobrenome enviado pelo cliente
     
         try {
             
             // insere os dados recebidos no banco de dados
             const resultado = await connection.execute(
-                'INSERT INTO usuarios (nome, sobrenome, email, senha) VALUES (?,?,?,?)', [nomeReq, sobrenomeReq, emailReq, senhaReq] // parâmetros a serem inseridos no banco
+                'INSERT INTO usuarios (nome, email, senha) VALUES (?,?,?)', [nomeReq, emailReq, senhaReq] // parâmetros a serem inseridos no banco
             );
     
             console.log('Dados inseridos com sucesso no banco de dados', resultado.insertId);

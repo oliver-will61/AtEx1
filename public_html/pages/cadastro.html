@@ -19,13 +19,10 @@
 
             <form class="container-formulario-cadastro">
 
-                <label for="nome-cadastro">Nome
+                <label for="nome-cadastro">Nome Completo / Nome Estabelecimento
                     <input  id="nome-cadastro" class="formulario-cadastro-entrada" type="text" name=nome >
                 </label>
         
-                <label for="sobrenome-cadastro">Sobrenome
-                    <input id="sobrenome-cadastro" class="formulario-cadastro-entrada" type="text"  name=sobrenome>
-                </label>
 
                 <label for="email-cadastro" class="cadastro-rotulo">Email
                     <input id="email-cadastro" class="formulario-cadastro-entrada" type="email"  name="email" autocomplete="username">
@@ -92,13 +89,11 @@
         function mandaDadosParaServidor(){  
 
             const nome = document.querySelector("#nome-cadastro");
-            const sobrenome = document.querySelector("#sobrenome-cadastro");
 
             const usuario = {
                 email: emailInput.value,
                 senha: senhaInput.value,
                 nome: nome.value,
-                sobrenome: sobrenome.value
             }
 
 
