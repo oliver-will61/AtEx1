@@ -125,11 +125,12 @@
                 <div class="container-doador">
                     <img class="imagem-doador"src="${element.img}">
 
-                    <div class="infomarcoes-doador">
+                    <div class="infomarcoes-doador" id = "ponto-de-doacao" data-id="${element.id}">
                         <h3 class="nome-doador">${element.nome}</h3>
                         <p class="localização-doador">${element.produto}</p>
                     </div>
                 </div>`
+                
             });
         }
 
@@ -139,10 +140,8 @@
             const doadores = document.querySelectorAll(".container-doador")
             
             doadores.forEach((elemente) => elemente.addEventListener('click',  (event) => {
-                doadorSelecionado = event.currentTarget.querySelector(".nome-doador").textContent;
+                doadorSelecionado = event.currentTarget.querySelector("#ponto-de-doacao").dataset.id;
                 
-                console.log(doadorSelecionado)
-
                 descricaoDoador(doadorSelecionado) //carrega a tela do doador
             }))
         }
@@ -151,7 +150,8 @@
         function descricaoDoador(doadorSelecionado){
             //deixa a tela principal em branco e escreve a descricao de cada doador
 
-            const objetoSelecionado = pontosDoacoes.data.find(objeto => objeto.nome === doadorSelecionado)
+            const objetoSelecionado = pontosDoacoes.data.find(objeto => objeto.id == doadorSelecionado);
+            
             
             const logo = document.querySelector(".logo-icone")
             const tituloHeader = document.querySelector(".titulo-header")
@@ -160,20 +160,26 @@
 
             conteudoPrincipal.innerHTML ="" // deixa em branco a tela principa
 
-            logo.src = `${objetoSelecionado.img}`;
-            logo.style = "border-radius: 30px;"
+            //logo.src = `${objetoSelecionado.img}`; se refere a imagem da logo do usuario ou estabelecimento
+            //logo.style = "border-radius: 30px;"
 
             footer.style = "display:block";
 
             tituloHeader.innerHTML = doadorSelecionado
-
+            
+            console.log(objetoSelecionado.imagemCaminho);
+            
+            console.log(
+                `https://willi4776.c44.integrator.host:58873/${objetoSelecionado.imagemCaminho}`
+                )
+            
             conteudoPrincipal.innerHTML = `
 
                 <h2 class="subtitulo">Doando</h2>
                 <p class="texto-doador">${objetoSelecionado.produto}</p>
-
+                
                 <div class="container-img-produto-doador">
-                    <img class="img-produto-doador" src=${objetoSelecionado.imgProduto}>
+                    <img class="img-produto-doador" src="${`https://willi4776.c44.integrator.host:58873/${objetoSelecionado.imagemCaminho}`}" >
                 </div>
 
 

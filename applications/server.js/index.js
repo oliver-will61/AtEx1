@@ -101,7 +101,14 @@ async function startServe(){
         
         const connection = await connectionPromise;// // Obtem a conexão com o banco
         // configura o roteador de cadastro, passando a conexão do banco
+        
+        
+        
 
+        // diretorio estatico do database da imagens=================================================================
+
+        const imageBasePath = path.resolve(__dirname, 'image_data_base'); //diretorio onjde está as imagens
+        console.log('Caminho resolvido para a pasta de imagens:', imageBasePath);
 
 
         // Registra as rotas ==============================================================
@@ -111,6 +118,7 @@ async function startServe(){
         app.use('/', addPontoDoacaoRota);
         app.use('/', puxaPontoDoacao);
         app.use('/', verificaLoginRota)
+        app.use('/images', express.static(imageBasePath)); // para o frontend encontrar a imagem foi nessério colocar o código no server (index.js)
         
         //cria o servidor HTTPS e inicia-o
         https.createServer(certificadoAndKey, app).listen(port, ()=>{

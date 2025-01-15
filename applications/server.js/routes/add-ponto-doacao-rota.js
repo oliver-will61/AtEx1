@@ -1,6 +1,13 @@
 import express from 'express';
 import { connectionPromise } from '../config/db.js';
 import multer from 'multer';
+import path from 'path';
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 //configura o armazenamento do multer para salvar os arquivos em um diretório específico
 
@@ -23,6 +30,15 @@ const upload = multer({
 const app = express();
 app.use(express.json()) // Usado para lidar com o JSON no corpo da requisição
 
+// Adiciona o middleware para servir arquivos estáticos da pasta 'image_data_base'
+
+const imageBasePath = path.resolve(__dirname, '..', 'image_data_base');
+console.log('Caminho resolvido para a pasta de imagens:', imageBasePath);
+
+app.use('/images', express.static(imageBasePath));
+
+
+
 const router = express.Router() // Cria uma nova instância do roteador do Express para definir rotas separadas
 router.post('/AddPontoDoacao', upload.single('imagem'), async (req, res) => {
     console.log('Requisição na rota de add ponto doalçao recebida');
@@ -35,7 +51,7 @@ router.post('/AddPontoDoacao', upload.single('imagem'), async (req, res) => {
     const  bairroReq = req.body.bairro
     const ruaReq = req.body.rua
     const numeroReq = req.body.numero
-    const imagemPath = req.file ? req.file.path : null; // // Verifica se uma imagem foi enviada e pega o caminho do arquivo
+    const imagemPath = req.file ? `images/${req.file.filename}` : null;  // Verifica se uma imagem foi enviada e pega o caminho do arquivo
     
     try{
         const connection = await connectionPromise  // Obtem a conexão com o banco
