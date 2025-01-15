@@ -6,20 +6,25 @@ import multer from 'multer';
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '../image_data_base') // define o diretório onde os arquivos serão armazenados
+        cb(null, './image_data_base') // define o diretório onde os arquivos serão armazenados
     },
     filename: (req, file, cb) => {
-        cb(null, Data.now() + '-' + file.originalname);  // Gera um nome único para o arquivo
+        cb(null, Date.now() + '-' + file.originalname);  // Gera um nome único para o arquivo
     }
 });
 
-const upload = multer({storage: storage});   // Cria o middleware para o upload de arquivos
+// Cria o middleware para o upload de arquivos
+const upload = multer({
+    storage,
+    limits: {fileSize: 10 * 1024 * 1024},   // Limite de 10MB
+    
+});   
 
 const app = express();
 app.use(express.json()) // Usado para lidar com o JSON no corpo da requisição
 
 const router = express.Router() // Cria uma nova instância do roteador do Express para definir rotas separadas
-router.post('/AddPontoDoacao', upload.single('image'), async (req, res) => {
+router.post('/AddPontoDoacao', upload.single('imagem'), async (req, res) => {
     console.log('Requisição na rota de add ponto doalçao recebida');
 
     const usuarioIdReq = req.body.usuarioId; 
@@ -34,7 +39,7 @@ router.post('/AddPontoDoacao', upload.single('image'), async (req, res) => {
     
     try{
         const connection = await connectionPromise  // Obtem a conexão com o banco
-        await connection.execute('INSERT INTO  pontos_de_doacao (idUsuario, produto, descricaoProduto, cep, cidade, bairro, rua, numero, imagem) VALUES (?,?,?,?,?,?,?,?,?)', 
+        await connection.execute('INSERT INTO  pontos_de_doacao (idUsuario, produto, descricaoProduto, cep, cidade, bairro, rua, numero, imagemCaminho) VALUES (?,?,?,?,?,?,?,?,?)', 
             [usuarioIdReq, produtoReq, descricaoReq, cepReq, cidadeReq, bairroReq, ruaReq, numeroReq, imagemPath]
         ); 
 
