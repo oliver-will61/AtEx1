@@ -10,7 +10,7 @@
 <body>
     <header>
         <img src="assets/loveFoodIcone.png" class="logo-icone">
-        <h1 class="titulo-header">Avenida Paulista - 123</h1>
+        <h1 class="titulo-header">Início</h1>
     </header>
 
 
@@ -126,8 +126,8 @@
                     <img class="imagem-doador"src="assets/usuario_avatar/user_imagem1.png">
 
                     <div class="infomarcoes-doador" id = "ponto-de-doacao" data-id="${element.id}">
-                        <h3 class="nome-doador">${element.nome}</h3>
-                        <p class="localização-doador">${element.produto}</p>
+                        <h3 class="nome-doador">${element.produto}</h3>
+                        <p class="localização-doador">${element.nome}</p>
                     </div>
                 </div>`
                 
@@ -165,7 +165,7 @@
 
             footer.style = "display:block";
 
-            tituloHeader.innerHTML = doadorSelecionado
+            tituloHeader.innerHTML = objetoSelecionado.nome;
             
             console.log(objetoSelecionado.imagemCaminho);
             
@@ -192,10 +192,6 @@
                     ${objetoSelecionado.rua}, ${objetoSelecionado.numero}, ${objetoSelecionado.bairro},
                     ${objetoSelecionado.cidade}, ${objetoSelecionado.cep}
                 </p>
-
-                <div class="container-mapa">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.2661598831164!2d-46.66148162290235!3d-23.55888246150462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59cd060ea13b%3A0x7c535e9d9784e6c2!2sAv.%20Paulista%2C%202000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-200!5e0!3m2!1spt-BR!2sbr!4v1705085697883!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
             `
         }
     </script>

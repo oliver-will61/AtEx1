@@ -45,8 +45,8 @@ header {
 
 .conteudo-principal{
     margin: 0 0.4em;
-    /* height: 100vh; */
-    /* margin-bottom: 500px; */
+    height: auto;
+    margin-bottom: 69px; /* compensa o tamanho do menu do rodapé*/
 }
 
 
@@ -62,7 +62,7 @@ header {
     display: flex;  
     gap:12px;
     align-items: center;
-    margin-bottom: 2em;
+    padding-bottom: 2em;
 }
 
 .imagem-doador{
