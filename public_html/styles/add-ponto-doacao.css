@@ -1,0 +1,20 @@
+.container-produto, .container-endereco{
+    margin-bottom: 1em;
+}
+
+.label-imagem-input{
+    margin-bottom: 2em;
+}
+
+.titulo-container-produto, .titulo-container-endereco{
+    width: 100%;
+    font-size: 1.1em;
+    margin-bottom: 2em;
+}
+
+.input-imagem-produto{
+    display: block;
+    padding: 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+}
