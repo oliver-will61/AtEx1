@@ -17,12 +17,12 @@
 
     <main class="container-cadastro">
 
-        <div class="formualario-cadastro">
+        <div class="formualario-cadastro" id = "formualario-cadastro">
 
             <form class="container-formulario-cadastro">
 
                 <label for="produto-input">Nome do Produto
-                    <input  id="produto-input" class="formulario-cadastro-entrada" type="text">
+                    <input  id="produto-input" class="formulario-cadastro-entrada" type="text" required>
                 </label>
         
                 <label for="descricao-input">Descrição do produto
@@ -30,7 +30,7 @@
                 </label>
 
                 <label for="imagem-input">Imagem do produto
-                    <input  id="imagem-input" class="formulario-cadastro-entrada" type="file" name="imagem" >
+                    <input  id="imagem-input" class="formulario-cadastro-entrada" type="file" name="imagem">
                 </label>
 
                 <label for="cep-input" class="cadastro-rotulo">CEP
@@ -38,25 +38,25 @@
                 </label>
 
                 <label for="cidade-input" class="cadastro-rotulo">Cidade
-                    <input id="cidade-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
+                    <input id="cidade-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username" required>
                 </label>
 
                 <label for="bairro-input" class="cadastro-rotulo">Bairro
-                    <input id="bairro-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
+                    <input id="bairro-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username" required>
                 </label>
 
                 <label for="rua-input" class="cadastro-rotulo">Rua
-                    <input id="rua-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
+                    <input id="rua-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username" required>
                 </label>
 
-                <label for="numero-input" class="cadastro-rotulo">Número
-                    <input id="numero-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username">
+                <label for="numero-input" class="cadastro-rotulo">Número ou Ponto de Referência
+                    <input id="numero-input" class="formulario-cadastro-entrada" type="text"  name="email" autocomplete="username" required>
                 </label>
 
             </div>
             
 
-            <button class="botao" id = 'btn' type="button">Enviar</button>
+            <button class="botao" id = 'btn' type="submit">Enviar</button>
    
         </form>
     </main>
@@ -76,9 +76,10 @@
             }
         })
 
-         const btn = document.getElementById('btn')
+         const form = document.getElementById('formualario-cadastro');
 
-         btn.addEventListener('click', () => {
+         form.addEventListener('submit', () => {
+             event.preventDefault(); // Impede o envio automático do formulário
 
             const produtoInput =  document.getElementById('produto-input');
             const descricaoInput = document.getElementById('descricao-input');
@@ -91,7 +92,7 @@
             
             
             // pucha o id do usuario logado
-            const usuarioIUnfo = JSON.parse(sessionStorage.getItem('usuarioInfo')) // pega as informações salvados do usuario logado
+            const usuarioIUnfo = JSON.parse(localStorage.getItem('usuarioInfo')) // pega as informações salvados do usuario logado
             
             
             // cria um objeto FormData
@@ -120,11 +121,15 @@
             .then(response => response.json()) // Converte a resposta para JSON 
             .then(data => {
                 console.log(data.message);
+                alert('Ponto de doação criado!');
+                document.location.href = "../index.html"
             })
             .catch(error => {
                 console.error('Erro ao enviar dados para o seervidor', error);
             })
          })
+         
+         
 
     </script>
 
