@@ -7,13 +7,47 @@
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-    <main>
-        <p>Usuario ID: <span id='usuario-id'></span></p>
-        <p>Usuario: <span id='usuario-nome'></span></p></p>
-        <p>Email: <span id='usuario-email'></span></p>
+    
+    <header>
+        <a href="../index.html">
+            <img src="../assets/loveFoodIcone.png" class="logo-icone">    
+        </a>
+        <h1 class="titulo-header">Perfil</h1>    
+    </header>
+    
+    <main class="conteudo-principal">
+        <p class="nome-doador">Usuario ID: <span id='usuario-id'></span></p>
+        <p class="nome-doador">Usuario: <span id='usuario-nome'></span></p></p>
+        <p class="nome-doador">Email: <span id='usuario-email'></span></p>
         
-        <button id='btn-logout'>Sair da Conta</button>
+        <button id='btn-logout' class="botao">Sair da Conta</button>
     </main>
+    
+    <nav class="menu">
+
+        <div class="menu-lista">
+
+            <a class =menu-lista-itens href="../index.html">
+                <img class = "menu-icones" src="../assets/casa.png">
+                <p class="menu-texto">Inicio</p>
+            </a>
+
+            <a class =menu-lista-itens>
+                <img class = "menu-icones" src="../assets/procurar.png">
+                <p class="menu-texto">Buscar</p>
+            </a>
+
+            <a class =menu-lista-itens href="../pages/favoritos.html">
+                <img class = "menu-icones" src="../assets/coracao.png">
+                <p class="menu-texto">Favoritos</p>
+            </a>
+
+            <a class =menu-lista-itens href="../pages/perfil.html">
+                <img class = "menu-icones" src="../assets/do-utilizador.png">
+                <p class="menu-texto">Perfil</p>
+            </a> 
+        </div>
+    </nav>
     
     <script>
         fetch('https://willi4776.c44.integrator.host:58873/verifica-login', {
@@ -50,8 +84,8 @@
                 //deleta o token de login
                 document.cookie = "auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";   
                 
-                //deleta os dados do usuario mantidos no sessionStorage
-                sessionStorage.removeItem('usuarioInfo');
+                //deleta os dados do usuario mantidos no localStorage
+                localStorage.removeItem('usuarioInfo');
                 
                 /* expires, define a data de expiração no passado, fazendo com que o cookie seja apagado, path=/ garante que o cookie será deletado em toda a aplicação (não apenas na página atual).*/
             
